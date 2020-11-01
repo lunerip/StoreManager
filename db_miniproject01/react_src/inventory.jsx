@@ -18,9 +18,9 @@ const Logo = () =>(
 const BusinessButtons= () => (
   <ul>
   <h6>Business</h6>
-  <li><a href="#"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
-  <li><a href="#"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
-  <li><a href="#"><i className="fas fa-wallet"></i>Transacciones</a></li>
+  <li><a href="sales.html"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
+  <li><a href="inventory.html"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
+  <li><a href="transaction.html"><i className="fas fa-wallet"></i>Transacciones</a></li>
   </ul>
 );
 
@@ -31,13 +31,6 @@ const BarButtons = () =>(
   </div>
 );
 
-const SocialButtons = () =>(
-  <div className="social_media">
-      <a href="#"><i className="fab fa-facebook-f"></i></a>
-      <a href="#"><i className="fab fa-twitter"></i></a>
-      <a href="#"><i className="fab fa-instagram"></i></a>
-  </div>
-);
 
 const SideBar = () =>(
   <div className="sidebar">
@@ -99,7 +92,7 @@ const TopRow = ()=>(
 
 const SalesTitle = () =>(
   <div className="title"> 
-      Registrar Venta
+      Inventario
       <div className="info">
         Empleado: EM020398
       </div>
@@ -107,7 +100,7 @@ const SalesTitle = () =>(
 );
 const TransactionTitle = () =>(
   <div className="title"> 
-      Transacciones
+      Inventory
       <div className="info">
         Empleado: EM020398
       </div>

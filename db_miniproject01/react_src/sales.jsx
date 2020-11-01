@@ -18,9 +18,9 @@ const Logo = () =>(
 const BusinessButtons= () => (
   <ul>
   <h6>Business</h6>
-  <li><a href="#"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
-  <li><a href="#"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
-  <li><a href="#"><i className="fas fa-wallet"></i>Transacciones</a></li>
+  <li><a href="sales.html"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
+  <li><a href="inventory.html"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
+  <li><a href="transaction.html"><i className="fas fa-wallet"></i>Transacciones</a></li>
   </ul>
 );
 

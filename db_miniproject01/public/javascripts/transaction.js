@@ -39,7 +39,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "sales.html" },
         React.createElement("i", { className: "fas fa-money-bill" }),
         "Realizar venta"
       )
@@ -49,7 +49,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "inventory.html" },
         React.createElement("i", { className: "fas fa-file-invoice-dollar" }),
         "Inventario"
       )
@@ -59,7 +59,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "transaction.html" },
         React.createElement("i", { className: "fas fa-wallet" }),
         "Transacciones"
       )
@@ -211,18 +211,6 @@ var TopRow = function TopRow() {
   );
 };
 
-var SalesTitle = function SalesTitle() {
-  return React.createElement(
-    "div",
-    { className: "title" },
-    "Registrar Venta",
-    React.createElement(
-      "div",
-      { className: "info" },
-      "Empleado: EM020398"
-    )
-  );
-};
 var TransactionTitle = function TransactionTitle() {
   return React.createElement(
     "div",
@@ -239,7 +227,7 @@ var InventoryTitle = function InventoryTitle() {
   return React.createElement(
     "div",
     { className: "title" },
-    "Inventario",
+    "Transacciones",
     React.createElement(
       "div",
       { className: "info" },
@@ -253,7 +241,7 @@ var Content = function Content() {
     "section",
     { className: "main_content" },
     React.createElement(Header, null),
-    React.createElement(SalesTitle, null),
+    React.createElement(TransactionTitle, null),
     React.createElement(TopRow, null),
     React.createElement(SalesTable, null),
     React.createElement(Pie, null)

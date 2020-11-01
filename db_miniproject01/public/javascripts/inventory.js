@@ -39,7 +39,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "sales.html" },
         React.createElement("i", { className: "fas fa-money-bill" }),
         "Realizar venta"
       )
@@ -49,7 +49,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "inventory.html" },
         React.createElement("i", { className: "fas fa-file-invoice-dollar" }),
         "Inventario"
       )
@@ -59,7 +59,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "transaction.html" },
         React.createElement("i", { className: "fas fa-wallet" }),
         "Transacciones"
       )
@@ -72,28 +72,6 @@ var BarButtons = function BarButtons() {
     "div",
     null,
     React.createElement(BusinessButtons, null)
-  );
-};
-
-var SocialButtons = function SocialButtons() {
-  return React.createElement(
-    "div",
-    { className: "social_media" },
-    React.createElement(
-      "a",
-      { href: "#" },
-      React.createElement("i", { className: "fab fa-facebook-f" })
-    ),
-    React.createElement(
-      "a",
-      { href: "#" },
-      React.createElement("i", { className: "fab fa-twitter" })
-    ),
-    React.createElement(
-      "a",
-      { href: "#" },
-      React.createElement("i", { className: "fab fa-instagram" })
-    )
   );
 };
 
@@ -215,7 +193,7 @@ var SalesTitle = function SalesTitle() {
   return React.createElement(
     "div",
     { className: "title" },
-    "Registrar Venta",
+    "Inventario",
     React.createElement(
       "div",
       { className: "info" },
@@ -227,7 +205,7 @@ var TransactionTitle = function TransactionTitle() {
   return React.createElement(
     "div",
     { className: "title" },
-    "Transacciones",
+    "Inventory",
     React.createElement(
       "div",
       { className: "info" },

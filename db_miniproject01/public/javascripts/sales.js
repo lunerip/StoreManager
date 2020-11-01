@@ -39,7 +39,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "sales.html" },
         React.createElement("i", { className: "fas fa-money-bill" }),
         "Realizar venta"
       )
@@ -49,7 +49,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "inventory.html" },
         React.createElement("i", { className: "fas fa-file-invoice-dollar" }),
         "Inventario"
       )
@@ -59,7 +59,7 @@ var BusinessButtons = function BusinessButtons() {
       null,
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "transaction.html" },
         React.createElement("i", { className: "fas fa-wallet" }),
         "Transacciones"
       )
