@@ -220,11 +220,16 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
+  border: 2px solid #dddddd;
+  text-align: center;
   padding: 8px;
+  grid-auto-columns: 1fr;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #bdb8d7;
+}
+
+body > table > tbody > tr > td{
+  text-align: center;
 }

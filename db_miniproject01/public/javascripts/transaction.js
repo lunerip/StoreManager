@@ -135,14 +135,121 @@ var Header = function Header() {
   );
 };
 
-var SalesTable = function SalesTable() {
+var TransactionsTable = function TransactionsTable() {
   return React.createElement(
-    "div",
-    { className: "mdc-layout-grid" },
+    "table",
+    null,
     React.createElement(
-      "div",
-      { className: "subtitle" },
-      "Total"
+      "tr",
+      null,
+      React.createElement("th", null),
+      React.createElement(
+        "th",
+        null,
+        "Ticket"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Fecha"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Subtotal"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Total"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "000001 "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "01/11/2020"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "100"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "116"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "000002 "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "01/11/2020"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "150"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "174"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "000003"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "01/11/2020"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "60"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "69.6"
+      )
     )
   );
 };
@@ -153,60 +260,13 @@ var TopRow = function TopRow() {
     { className: "mdc-layout-grid" },
     React.createElement(
       "div",
-      { className: "subtitle" },
-      "Selecciona los productos"
-    ),
-    React.createElement(
-      "table",
       null,
       React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "th",
-          null,
-          "Selecci\xF3n"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Producto"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Precio"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Cantidad"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Subtotal"
-        )
+        "div",
+        { className: "subtitle" },
+        "Historial de Ventas"
       ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Alfreds Futterkiste"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "Maria Anders"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "Germany"
-        )
-      )
+      React.createElement(TransactionsTable, null)
     )
   );
 };
@@ -243,7 +303,6 @@ var Content = function Content() {
     React.createElement(Header, null),
     React.createElement(TransactionTitle, null),
     React.createElement(TopRow, null),
-    React.createElement(SalesTable, null),
     React.createElement(Pie, null)
   );
 };

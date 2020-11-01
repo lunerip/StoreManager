@@ -1,6 +1,5 @@
 /* global React, ReactDOM, fetch */
 
-
 const Logo = () =>(
     <div>
       <svg width="100%" height="10%" viewBox="-10 -10 120 80"
@@ -66,36 +65,53 @@ const Logo = () =>(
       </div>  
   );
   
-  const SalesTable = ()=>(
-    <div className="mdc-layout-grid">
-      <div className="subtitle">
-          Total
-        </div>
-        
-      </div>
+
+
+  const TransactionsTable = ()=>(
+    <table>
+          <tr>
+            <th></th>
+            <th>Ticket</th>
+            <th>Fecha</th>
+            <th>Subtotal</th>
+            <th>Total</th>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="name1" /></td>
+            <td>000001 </td>
+            <td>01/11/2020</td>
+            <td>100</td>
+            <td>116</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="name1" /></td>
+            <td>000002 </td>
+            <td>01/11/2020</td>
+            <td>150</td>
+            <td>174</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="name1" /></td>
+            <td>000003</td>
+            <td>01/11/2020</td>
+            <td>60</td>
+            <td>69.6</td>
+          </tr>
+          
+        </table>
   );
   
   const TopRow = ()=>(
     <div className="mdc-layout-grid">
-        <div className="subtitle">
-          Selecciona los productos 
+        <div>
+          <div className="subtitle">
+            Historial de Ventas
+          </div>
+          <TransactionsTable/>
         </div>
-        <table>
-          <tr>
-            <th>Selección</th>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-          </tr>
-          
-        </table>
     </div>
+    
+    
   );
   
 
@@ -122,7 +138,6 @@ const Logo = () =>(
       <TransactionTitle/>
       
       <TopRow/>
-      <SalesTable/>
   
       <Pie/>
     </section>
