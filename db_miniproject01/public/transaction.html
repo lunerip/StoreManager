@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title> Store Manager | Inventario</title>
+    <link rel="stylesheet"
+          href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./javascripts/transaction.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA7d6i_yqEYNsZ366fqwLqqx9AI-5pOmHk",
+    authDomain: "bd-avanzadas-c2937.firebaseapp.com",
+    databaseURL: "https://bd-avanzadas-c2937.firebaseio.com",
+    projectId: "bd-avanzadas-c2937",
+    storageBucket: "bd-avanzadas-c2937.appspot.com",
+    messagingSenderId: "460257649236",
+    appId: "1:460257649236:web:203ffc0554a6d54f4c83c1",
+    measurementId: "G-K9ZM73ZG4T"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+  </body>
+
+</html>
