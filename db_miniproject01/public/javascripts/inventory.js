@@ -143,11 +143,6 @@ var TopRow = function TopRow() {
         React.createElement(
           "th",
           null,
-          "Selecci\xF3n"
-        ),
-        React.createElement(
-          "th",
-          null,
           "Producto"
         ),
         React.createElement(
@@ -159,21 +154,11 @@ var TopRow = function TopRow() {
           "th",
           null,
           "Cantidad"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Subtotal"
         )
       ),
       React.createElement(
         "tr",
         null,
-        React.createElement(
-          "td",
-          null,
-          React.createElement("input", { type: "checkbox", name: "name1" })
-        ),
         React.createElement(
           "td",
           null,
@@ -188,21 +173,11 @@ var TopRow = function TopRow() {
           "td",
           null,
           "2"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "200"
         )
       ),
       React.createElement(
         "tr",
         null,
-        React.createElement(
-          "td",
-          null,
-          React.createElement("input", { type: "checkbox", name: "name1" })
-        ),
         React.createElement(
           "td",
           null,
@@ -217,21 +192,11 @@ var TopRow = function TopRow() {
           "td",
           null,
           "10"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "200"
         )
       ),
       React.createElement(
         "tr",
         null,
-        React.createElement(
-          "td",
-          null,
-          React.createElement("input", { type: "checkbox", name: "name1" })
-        ),
         React.createElement(
           "td",
           null,
@@ -246,21 +211,11 @@ var TopRow = function TopRow() {
           "td",
           null,
           "10"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "250"
         )
       ),
       React.createElement(
         "tr",
         null,
-        React.createElement(
-          "td",
-          null,
-          React.createElement("input", { type: "checkbox", name: "name1" })
-        ),
         React.createElement(
           "td",
           null,
@@ -275,21 +230,11 @@ var TopRow = function TopRow() {
           "td",
           null,
           "6"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "600"
         )
       ),
       React.createElement(
         "tr",
         null,
-        React.createElement(
-          "td",
-          null,
-          React.createElement("input", { type: "checkbox", name: "name1" })
-        ),
         React.createElement(
           "td",
           null,
@@ -304,21 +249,11 @@ var TopRow = function TopRow() {
           "td",
           null,
           "10"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "2500"
         )
       ),
       React.createElement(
         "tr",
         null,
-        React.createElement(
-          "td",
-          null,
-          React.createElement("input", { type: "checkbox", name: "name1" })
-        ),
         React.createElement(
           "td",
           null,
@@ -333,11 +268,6 @@ var TopRow = function TopRow() {
           "td",
           null,
           "8"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "800"
         )
       )
     )

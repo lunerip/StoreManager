@@ -191,8 +191,6 @@ const Content = () => (
     
     <SalesTable/>
 
-    <Ticket/>
-
     <Pie/>
   </section>
   
