@@ -1,5 +1,7 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _this = this;
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -127,15 +129,10 @@ var SalesTable = function SalesTable() {
 
 var TopRow = function TopRow() {
   return React.createElement(
-    "div",
-    { className: "mdc-layout-grid" },
+    "table",
+    { "class": "w3-table w3-striped w3-bordered w3-border" },
     React.createElement(
-      "div",
-      { className: "subtitle" },
-      "Se muestran los productos disponibles"
-    ),
-    React.createElement(
-      "table",
+      "tbody",
       null,
       React.createElement(
         "tr",
@@ -143,12 +140,17 @@ var TopRow = function TopRow() {
         React.createElement(
           "th",
           null,
-          "Producto"
+          "ProductID"
         ),
         React.createElement(
           "th",
           null,
-          "Precio"
+          "ProductName"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Price"
         ),
         React.createElement(
           "th",
@@ -156,120 +158,32 @@ var TopRow = function TopRow() {
           "Cantidad"
         )
       ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Chicas"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "100 la hora"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "2"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Leche"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "20"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "10"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Galletas"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "25"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "10"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Caf\xE9"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "100"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "6"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Carnita Asada"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "250"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "10"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Cheve"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "100"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "8"
-        )
-      )
+      props.data.database.map(function (element) {
+        return React.createElement(
+          "tr",
+          { key: element.ProductID.N },
+          React.createElement(
+            "td",
+            null,
+            element.ProductID.N
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.ProductName.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Price.N
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Cantidad.N
+          )
+        );
+      })
     )
   );
 };
@@ -314,7 +228,7 @@ var InventoryTitle = function InventoryTitle() {
 var BotonActualizar = function BotonActualizar() {
   return React.createElement(
     "button",
-    { "class": "w3-button w3-purple w3-round w3-margin-left" },
+    { "class": "w3-button w3-purple w3-round w3-margin-left", onClick: _this.cliquea },
     "Actualizar"
   );
 };
@@ -353,29 +267,29 @@ var Aplicacion = function (_React$Component) {
   function Aplicacion(props) {
     _classCallCheck(this, Aplicacion);
 
-    var _this = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
 
-    _this.state = {
+    _this2.state = {
       mensaje: 'Presiona el botón para obtener un refrán al azar.'
     };
-    _this.cliquea = _this.cliquea.bind(_this);
-    return _this;
+    _this2.cliquea = _this2.cliquea.bind(_this2);
+    return _this2;
   }
 
   _createClass(Aplicacion, [{
     key: "cliquea",
     value: function cliquea() {
-      var _this2 = this;
+      var _this3 = this;
 
       fetch("/refran") // llamada de AJAX
       .then(function (res) {
         return res.json();
       }).then(function (result) {
-        _this2.setState({
+        _this3.setState({
           mensaje: result.refran
         });
       }, function (error) {
-        _this2.setState({
+        _this3.setState({
           mensaje: error.message
         });
       });
