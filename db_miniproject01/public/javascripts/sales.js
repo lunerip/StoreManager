@@ -125,7 +125,7 @@ var Header = function Header() {
     React.createElement(
       "div",
       { className: "name" },
-      "Roberto Mateos Contreras"
+      "Roberto Contreras"
     ),
     React.createElement(
       "div",
@@ -143,69 +143,132 @@ var SalesTable = function SalesTable() {
       "div",
       { className: "subtitle" },
       "Total"
+    ),
+    React.createElement(
+      "div",
+      null,
+      React.createElement(TransactionsTable, null)
     )
   );
 };
 
-var TopRow = function TopRow() {
+var TransactionsTable = function TransactionsTable() {
   return React.createElement(
-    "div",
-    { className: "mdc-layout-grid" },
+    "table",
+    null,
     React.createElement(
-      "div",
-      { className: "subtitle" },
-      "Selecciona los productos"
-    ),
-    React.createElement(
-      "table",
+      "tr",
       null,
+      React.createElement("th", null),
       React.createElement(
-        "tr",
+        "th",
         null,
-        React.createElement(
-          "th",
-          null,
-          "Selecci\xF3n"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Producto"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Precio"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Cantidad"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Subtotal"
-        )
+        "Selecci\xF3n"
       ),
       React.createElement(
-        "tr",
+        "th",
         null,
-        React.createElement(
-          "td",
-          null,
-          "Alfreds Futterkiste"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "Maria Anders"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "Germany"
-        )
+        "Producto"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Precio"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "Leche "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "20"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "Galletas "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "25"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "Caf\xE9"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "100"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "Carnita Asada "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "250"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "checkbox", name: "name1" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "Cheve "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "100"
       )
     )
   );
@@ -223,6 +286,7 @@ var SalesTitle = function SalesTitle() {
     )
   );
 };
+
 var TransactionTitle = function TransactionTitle() {
   return React.createElement(
     "div",
@@ -235,6 +299,7 @@ var TransactionTitle = function TransactionTitle() {
     )
   );
 };
+
 var InventoryTitle = function InventoryTitle() {
   return React.createElement(
     "div",
@@ -254,7 +319,6 @@ var Content = function Content() {
     { className: "main_content" },
     React.createElement(Header, null),
     React.createElement(SalesTitle, null),
-    React.createElement(TopRow, null),
     React.createElement(SalesTable, null),
     React.createElement(Pie, null)
   );

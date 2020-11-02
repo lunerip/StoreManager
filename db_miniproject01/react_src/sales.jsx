@@ -69,9 +69,11 @@ const SalesTable = ()=>(
   <div className="mdc-layout-grid">
     <div className="subtitle">
         Total
-      </div>
-      
     </div>
+    <div>
+      <TransactionsTable/>
+    </div>
+  </div>
 );
 
 const TransactionsTable = ()=>(
@@ -149,7 +151,6 @@ const Content = () => (
     <Header/>
     <SalesTitle/>
     
-    <TopRow/>
     <SalesTable/>
 
     <Pie/>
