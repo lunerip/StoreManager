@@ -74,53 +74,53 @@ const TopRow = ()=>(
       </div>
       <table>
         <tr>
-          <th>Selección</th>
+          
           <th>Producto</th>
           <th>Precio</th>
           <th>Cantidad</th>
-          <th>Subtotal</th>
+          
         </tr>
         <tr>
-          <td><input type="checkbox" name="name1" /></td>
+          
           <td>Chicas</td>
           <td>100 la hora</td>
           <td>2</td>
-          <td>200</td>
+         
         </tr>
         <tr>
-        <td><input type="checkbox" name="name1" /></td>
+       
           <td>Leche</td>
           <td>20</td>
           <td>10</td>
-          <td>200</td>
+      
         </tr>
         <tr>
-        <td><input type="checkbox" name="name1" /></td>
+       
           <td>Galletas</td>
           <td>25</td>
           <td>10</td>
-          <td>250</td>
+         
         </tr>
         <tr>
-        <td><input type="checkbox" name="name1" /></td>
+       
           <td>Café</td>
           <td>100</td>
           <td>6</td>
-          <td>600</td>
+         
         </tr>
         <tr>
-        <td><input type="checkbox" name="name1" /></td>
+        
           <td>Carnita Asada</td>
           <td>250</td>
           <td>10</td>
-          <td>2500</td>
+  
         </tr>
         <tr>
-        <td><input type="checkbox" name="name1" /></td>
+        
           <td>Cheve</td>
           <td>100</td>
           <td>8</td>
-          <td>800</td>
+          
         </tr>
       </table>
   </div>
