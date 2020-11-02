@@ -278,6 +278,7 @@ var Aplicacion = function (_React$Component) {
           { className: "main_content" },
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
+          React.createElement(TopRow, { query: query }),
           React.createElement(BotonActualizar, null),
           React.createElement(Pie, null)
         ),

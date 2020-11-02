@@ -125,66 +125,29 @@ var SalesTable = function SalesTable() {
   );
 };
 
-var TopRow = function TopRow(props) {
-  return React.createElement(
-    "table",
-    { "class": "w3-table w3-striped w3-bordered w3-border" },
-    React.createElement(
-      "tbody",
-      null,
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "th",
-          null,
-          "ProductID"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "ProductName"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Price"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Cantidad"
-        )
-      ),
-      props.data.map(function (element) {
-        return React.createElement(
-          "tr",
-          { key: element.ProductID.N },
-          React.createElement(
-            "td",
-            null,
-            element.ProductID.N
-          ),
-          React.createElement(
-            "td",
-            null,
-            element.ProductName.S
-          ),
-          React.createElement(
-            "td",
-            null,
-            element.Price.N
-          ),
-          React.createElement(
-            "td",
-            null,
-            element.Cantidad.N
-          )
-        );
-      })
-    )
-  );
-};
+/*const TopRow = props=>(
+  <table class="w3-table w3-striped w3-bordered w3-border">
+  <tbody>
+  <tr>
+  <th>ProductID</th>
+  <th>ProductName</th>
+  <th>Price</th>
+  <th>Cantidad</th>
+  </tr>{
+    
+    props.data.map(((element)=>
+    <tr key={element.ProductID.N}>
+    <td>{element.ProductID.N}</td>
+    <td>{element.ProductName.S}</td>
+    <td>{element.Price.N}</td>
+    <td>{element.Cantidad.N}</td>
+    </tr>))
+  }
+  </tbody>
+  </table>
+       
+     
+);*/
 
 var SalesTitle = function SalesTitle() {
   return React.createElement(
@@ -278,6 +241,7 @@ var Aplicacion = function (_React$Component) {
           { className: "main_content" },
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
+          React.createElement(TopRow, { query: query }),
           React.createElement(BotonActualizar, null),
           React.createElement(Pie, null)
         ),

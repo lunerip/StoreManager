@@ -67,7 +67,7 @@ const SalesTable = ()=>(
     </div>
 );
 
-const TopRow = props=>(
+/*const TopRow = props=>(
   <table class="w3-table w3-striped w3-bordered w3-border">
   <tbody>
   <tr>
@@ -89,7 +89,7 @@ const TopRow = props=>(
   </table>
        
      
-);
+);*/
 
 const SalesTitle = () =>(
   <div className="title"> 
@@ -157,7 +157,7 @@ class Aplicacion extends React.Component {
           <section className="main_content">
           <Header/>
           <SalesTitle/>
-          
+          <TopRow query = {query}/>
           <BotonActualizar/>
           <Pie/>
           </section>
