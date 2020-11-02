@@ -148,6 +148,16 @@ var SalesTable = function SalesTable() {
       "div",
       null,
       React.createElement(TransactionsTable, null)
+    ),
+    React.createElement(
+      "div",
+      { className: "subtitle" },
+      "Ticket"
+    ),
+    React.createElement(
+      "div",
+      null,
+      React.createElement(Ticket, null)
     )
   );
 };
@@ -159,11 +169,6 @@ var TransactionsTable = function TransactionsTable() {
     React.createElement(
       "tr",
       null,
-      React.createElement(
-        "th",
-        null,
-        "Selecci\xF3n"
-      ),
       React.createElement(
         "th",
         null,
@@ -191,11 +196,6 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
-      ),
-      React.createElement(
-        "td",
-        null,
         "Leche "
       ),
       React.createElement(
@@ -220,8 +220,27 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name2" })
+        "Chaparritas "
       ),
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "500ml "
+      ),
+      React.createElement(
+        "td",
+        null,
+        "20"
+      )
+    ),
+    React.createElement(
+      "tr",
+      null,
       React.createElement(
         "td",
         null,
@@ -249,11 +268,6 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name3" })
-      ),
-      React.createElement(
-        "td",
-        null,
         "Caf\xE9"
       ),
       React.createElement(
@@ -278,11 +292,6 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name4" })
-      ),
-      React.createElement(
-        "td",
-        null,
         "Carnita Asada (Prime) "
       ),
       React.createElement(
@@ -304,11 +313,6 @@ var TransactionsTable = function TransactionsTable() {
     React.createElement(
       "tr",
       null,
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "checkbox", name: "name5" })
-      ),
       React.createElement(
         "td",
         null,
@@ -400,7 +404,6 @@ var Content = function Content() {
     React.createElement(Header, null),
     React.createElement(SalesTitle, null),
     React.createElement(SalesTable, null),
-    React.createElement(Ticket, null),
     React.createElement(Pie, null)
   );
 };
