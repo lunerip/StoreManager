@@ -28,9 +28,7 @@ const BusinessButtons= () => (
 
 );
 
-const BotonGenerarTicket = () => (
-  <button class="w3-button w3-purple w3-round w3-margin-left">Generar Ticket</button>
-);
+
 
 
 const BarButtons = () =>(
@@ -88,7 +86,7 @@ const SalesTable = ()=>(
     </div>
     <div>
       <TransactionsTable/>
-      <div ><BotonGenerarTicket/></div>
+      
       
     </div>
     <div className="subtitle">
@@ -215,6 +213,10 @@ const InventoryTitle = () =>(
 
 );
 
+const BotonGenerarTicket = () => (
+  <button class="w3-button w3-purple w3-round w3-margin-left">Generar Ticket</button>
+);
+
 const Content = () => (
   
   <section className="main_content">
@@ -222,6 +224,7 @@ const Content = () => (
     <SalesTitle/>
     
     <SalesTable/>
+    <BotonGenerarTicket/>
 
     
 
