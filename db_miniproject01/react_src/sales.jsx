@@ -73,13 +73,19 @@ const SalesTable = ()=>(
     <div>
       <TransactionsTable/>
     </div>
+    <div className="subtitle">
+        Ticket
+    </div>
+    <div>
+      <Ticket/>
+    </div>
   </div>
 );
 
 const TransactionsTable = ()=>(
   <table>
         <tr>
-          <th>Selección</th>
+          
           <th>Producto</th>
           <th>Cantidad</th>
           <th>Contenido</th>
@@ -87,7 +93,7 @@ const TransactionsTable = ()=>(
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name1" /></td>
+          
           <td>Leche </td>
           <td><input type="number" value="0" min="0" max="10"/></td>
           <td>1 ltr</td>
@@ -95,7 +101,15 @@ const TransactionsTable = ()=>(
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name2" /></td>
+          
+          <td>Chaparritas </td>
+          <td><input type="number" value="0" min="0" max="10"/></td>
+          <td>500ml </td>
+          <td>20</td>
+
+        </tr>
+        <tr>
+          
           <td>Galletas </td>
           <td><input type="number" value="0" min="0" max="10"/></td>
           <td>250 gr</td>
@@ -103,7 +117,7 @@ const TransactionsTable = ()=>(
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name3" /></td>
+          
           <td>Café</td>
           <td><input type="number" value="0" min="0" max="10"/></td>
           <td>1 kg</td>
@@ -111,7 +125,7 @@ const TransactionsTable = ()=>(
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name4" /></td>
+          
           <td>Carnita Asada (Prime) </td>
           <td><input type="number" value="0" min="0" max="10"/></td>
           <td>500 gr</td>
@@ -119,7 +133,7 @@ const TransactionsTable = ()=>(
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name5" /></td>
+          
           <td>Cheve </td>
           <td><input type="number" value="0" min="0" max="10"/></td>
           <td>12 latas</td>
