@@ -2,6 +2,7 @@
 
 
 const Logo = () =>(
+
   <div>
     <svg width="100%" height="10%" viewBox="-10 -10 120 80"
       version="1.1" 
@@ -13,33 +14,47 @@ const Logo = () =>(
       </path>
     </svg>
   </div>
+
 );
 
 const BusinessButtons= () => (
+
   <ul>
   <h6>Business</h6>
   <li><a href="sales.html"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
   <li><a href="inventory.html"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
   <li><a href="transaction.html"><i className="fas fa-wallet"></i>Transacciones</a></li>
   </ul>
+
 );
+
+const botonGenerarTicket =() => (
+
+  <button>Generar Ticket </button>
+
+)
 
 
 const BarButtons = () =>(
+
   <div>
     <BusinessButtons/>
   </div>
+
 );
 
 const SocialButtons = () =>(
+
   <div className="social_media">
       <a href="#"><i className="fab fa-facebook-f"></i></a>
       <a href="#"><i className="fab fa-twitter"></i></a>
       <a href="#"><i className="fab fa-instagram"></i></a>
   </div>
+
 );
 
 const SideBar = () =>(
+
   <div className="sidebar">
     <Logo/>
         <BarButtons/>
@@ -49,11 +64,13 @@ const SideBar = () =>(
 );
   
 const Pie = () => (
+
     <footer className="w3-container w3-center w3-small">
       <span className="w3-mobile">
         &copy; Store Manager 2020
       </span>
     </footer>
+
 );
 
 const Header = ()=> (
@@ -66,6 +83,7 @@ const Header = ()=> (
 );
 
 const SalesTable = ()=>(
+  
   <div className="mdc-layout-grid">
     <div className="subtitle">
         Cátalogo de productos
@@ -77,12 +95,15 @@ const SalesTable = ()=>(
         Ticket
     </div>
     <div>
+      <botonGenerarTicket/>
       <Ticket/>
     </div>
   </div>
+
 );
 
 const TransactionsTable = ()=>(
+
   <table>
         <tr>
           
@@ -142,7 +163,11 @@ const TransactionsTable = ()=>(
         </tr>
         
       </table>
+
+
 );
+
+
 
 const Ticket = () =>(
 
@@ -158,38 +183,47 @@ const Ticket = () =>(
 
 
 const SalesTitle = () =>(
+
   <div className="title"> 
       Registrar Venta
       <div className="info">
         Empleado: EM020398
       </div>
   </div>
+
 );
 
 const TransactionTitle = () =>(
+
   <div className="title"> 
       Transacciones
       <div className="info">
         Empleado: EM020398
       </div>
     </div>
+
 );
 
 const InventoryTitle = () =>(
+
   <div className="title"> 
       Inventario
       <div className="info">
         Empleado: EM020398
       </div>
     </div>
+
 );
 
 const Content = () => (
+  
   <section className="main_content">
     <Header/>
     <SalesTitle/>
     
     <SalesTable/>
+
+    
 
     <Pie/>
   </section>
@@ -198,11 +232,13 @@ const Content = () => (
 
   
 const Texto = props => (
+
     <div className="w3-panel w3-sand w3-card-4">
       <p>
         <em>{props.mensaje}</em>
       </p>
     </div>
+
 );
 
 
