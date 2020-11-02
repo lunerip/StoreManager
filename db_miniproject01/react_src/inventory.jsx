@@ -157,8 +157,9 @@ const Content = () => (
     <SalesTitle/>
     
     <TopRow/>
-    <SalesTable/>
-
+    
+  
+    
     <Pie/>
   </section>
   
