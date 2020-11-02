@@ -93,28 +93,28 @@ const TransactionsTable = ()=>(
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name1" /></td>
+          <td><input type="checkbox" name="name2" /></td>
           <td>Galletas </td>
           <td>250 gr</td>
           <td>25</td>
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name1" /></td>
+          <td><input type="checkbox" name="name3" /></td>
           <td>Café</td>
           <td>1 kg</td>
           <td>100</td>
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name1" /></td>
+          <td><input type="checkbox" name="name4" /></td>
           <td>Carnita Asada (Prime) </td>
           <td>500 gr</td>
           <td>300</td>
 
         </tr>
         <tr>
-          <td><input type="checkbox" name="name1" /></td>
+          <td><input type="checkbox" name="name5" /></td>
           <td>Cheve </td>
           <td>12 latas</td>
           <td>150</td>
@@ -123,6 +123,19 @@ const TransactionsTable = ()=>(
         
       </table>
 );
+
+const Ticket = () =>(
+
+  <table>
+
+    <tr>
+      <th>Productos</th>
+      <th>Precio</th>
+    </tr>
+
+  </table>
+)
+
 
 const SalesTitle = () =>(
   <div className="title"> 
@@ -157,6 +170,8 @@ const Content = () => (
     <SalesTitle/>
     
     <SalesTable/>
+
+    <Ticket/>
 
     <Pie/>
   </section>
