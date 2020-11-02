@@ -31,6 +31,8 @@ const BusinessButtons= () => (
 const botonGenerarTicket =() => (
 
   <button>Generar Ticket </button>
+  //hola neri aqui esta mi boton qlero
+  
 
 )
 
