@@ -67,14 +67,6 @@ var BusinessButtons = function BusinessButtons() {
   );
 };
 
-var BotonGenerarTicket = function BotonGenerarTicket() {
-  return React.createElement(
-    "button",
-    { "class": "w3-button w3-purple w3-round w3-margin-left" },
-    "Generar Ticket"
-  );
-};
-
 var BarButtons = function BarButtons() {
   return React.createElement(
     "div",
@@ -155,12 +147,7 @@ var SalesTable = function SalesTable() {
     React.createElement(
       "div",
       null,
-      React.createElement(TransactionsTable, null),
-      React.createElement(
-        "div",
-        null,
-        React.createElement(BotonGenerarTicket, null)
-      )
+      React.createElement(TransactionsTable, null)
     ),
     React.createElement(
       "div",
@@ -410,6 +397,14 @@ var InventoryTitle = function InventoryTitle() {
   );
 };
 
+var BotonGenerarTicket = function BotonGenerarTicket() {
+  return React.createElement(
+    "button",
+    { "class": "w3-button w3-purple w3-round w3-margin-left" },
+    "Generar Ticket"
+  );
+};
+
 var Content = function Content() {
   return React.createElement(
     "section",
@@ -417,6 +412,7 @@ var Content = function Content() {
     React.createElement(Header, null),
     React.createElement(SalesTitle, null),
     React.createElement(SalesTable, null),
+    React.createElement(BotonGenerarTicket, null),
     React.createElement(Pie, null)
   );
 };

@@ -125,17 +125,12 @@ var SalesTable = function SalesTable() {
   );
 };
 
-var TopRow = function TopRow() {
+var TopRow = function TopRow(props) {
   return React.createElement(
-    "div",
-    { className: "mdc-layout-grid" },
+    "table",
+    { "class": "w3-table w3-striped w3-bordered w3-border" },
     React.createElement(
-      "div",
-      { className: "subtitle" },
-      "Se muestran los productos disponibles"
-    ),
-    React.createElement(
-      "table",
+      "tbody",
       null,
       React.createElement(
         "tr",
@@ -143,12 +138,17 @@ var TopRow = function TopRow() {
         React.createElement(
           "th",
           null,
-          "Producto"
+          "ProductID"
         ),
         React.createElement(
           "th",
           null,
-          "Precio"
+          "ProductName"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Price"
         ),
         React.createElement(
           "th",
@@ -156,120 +156,32 @@ var TopRow = function TopRow() {
           "Cantidad"
         )
       ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Chicas"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "100 la hora"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "2"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Leche"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "20"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "10"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Galletas"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "25"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "10"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Caf\xE9"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "100"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "6"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Carnita Asada"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "250"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "10"
-        )
-      ),
-      React.createElement(
-        "tr",
-        null,
-        React.createElement(
-          "td",
-          null,
-          "Cheve"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "100"
-        ),
-        React.createElement(
-          "td",
-          null,
-          "8"
-        )
-      )
+      props.data.map(function (element) {
+        return React.createElement(
+          "tr",
+          { key: element.ProductID.N },
+          React.createElement(
+            "td",
+            null,
+            element.ProductID.N
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.ProductName.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Price.N
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Cantidad.N
+          )
+        );
+      })
     )
   );
 };
@@ -314,36 +226,8 @@ var InventoryTitle = function InventoryTitle() {
 var BotonActualizar = function BotonActualizar() {
   return React.createElement(
     "button",
-    { "class": "w3-button w3-purple w3-round w3-margin-left" },
+    { className: "w3-button w3-purple w3-round w3-margin-left" },
     "Actualizar"
-  );
-};
-
-var Content = function Content() {
-  return React.createElement(
-    "section",
-    { className: "main_content" },
-    React.createElement(Header, null),
-    React.createElement(SalesTitle, null),
-    React.createElement(TopRow, null),
-    React.createElement(BotonActualizar, null),
-    React.createElement(Pie, null)
-  );
-};
-
-var Texto = function Texto(props) {
-  return React.createElement(
-    "div",
-    { className: "w3-panel w3-sand w3-card-4" },
-    React.createElement(
-      "p",
-      null,
-      React.createElement(
-        "em",
-        null,
-        props.mensaje
-      )
-    )
   );
 };
 
@@ -356,39 +240,48 @@ var Aplicacion = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
 
     _this.state = {
-      mensaje: 'Presiona el botón para obtener un refrán al azar.'
+      query: []
     };
-    _this.cliquea = _this.cliquea.bind(_this);
     return _this;
   }
 
   _createClass(Aplicacion, [{
-    key: "cliquea",
-    value: function cliquea() {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
       var _this2 = this;
 
-      fetch("/refran") // llamada de AJAX
+      fetch("/lenguajes") // llamada de AJAX
       .then(function (res) {
         return res.json();
       }).then(function (result) {
+        console.log(result);
         _this2.setState({
-          mensaje: result.refran
+          query: result
         });
       }, function (error) {
-        _this2.setState({
-          mensaje: error.message
-        });
+        console.log(error.message);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var mensaje = this.state.mensaje;
+      var query = this.state.query;
 
+      {
+        console.log(query);
+      }
       return React.createElement(
         "div",
         { className: "wrapper" },
-        React.createElement(Content, null),
+        React.createElement(
+          "section",
+          { className: "main_content" },
+          React.createElement(Header, null),
+          React.createElement(SalesTitle, null),
+          React.createElement(TopRow, { query: query }),
+          React.createElement(BotonActualizar, null),
+          React.createElement(Pie, null)
+        ),
         React.createElement(SideBar, null)
       );
     }
