@@ -68,7 +68,7 @@ const Header = ()=> (
 const SalesTable = ()=>(
   <div className="mdc-layout-grid">
     <div className="subtitle">
-        Total
+        Cátalogo de productos
     </div>
     <div>
       <TransactionsTable/>
@@ -82,12 +82,14 @@ const TransactionsTable = ()=>(
           <th>Selección</th>
           <th>Producto</th>
           <th>Cantidad</th>
+          <th>Contenido</th>
           <th>Precio</th>
 
         </tr>
         <tr>
           <td><input type="checkbox" name="name1" /></td>
           <td>Leche </td>
+          <td><input type="number" value="0" min="0" max="10"/></td>
           <td>1 ltr</td>
           <td>20</td>
 
@@ -95,6 +97,7 @@ const TransactionsTable = ()=>(
         <tr>
           <td><input type="checkbox" name="name2" /></td>
           <td>Galletas </td>
+          <td><input type="number" value="0" min="0" max="10"/></td>
           <td>250 gr</td>
           <td>25</td>
 
@@ -102,6 +105,7 @@ const TransactionsTable = ()=>(
         <tr>
           <td><input type="checkbox" name="name3" /></td>
           <td>Café</td>
+          <td><input type="number" value="0" min="0" max="10"/></td>
           <td>1 kg</td>
           <td>100</td>
 
@@ -109,6 +113,7 @@ const TransactionsTable = ()=>(
         <tr>
           <td><input type="checkbox" name="name4" /></td>
           <td>Carnita Asada (Prime) </td>
+          <td><input type="number" value="0" min="0" max="10"/></td>
           <td>500 gr</td>
           <td>300</td>
 
@@ -116,6 +121,7 @@ const TransactionsTable = ()=>(
         <tr>
           <td><input type="checkbox" name="name5" /></td>
           <td>Cheve </td>
+          <td><input type="number" value="0" min="0" max="10"/></td>
           <td>12 latas</td>
           <td>150</td>
 
