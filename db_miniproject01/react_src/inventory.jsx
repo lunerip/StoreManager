@@ -67,9 +67,8 @@ const SalesTable = ()=>(
     </div>
 );
 
-const TopRow = ()=>(
+const TopRow = props=>(
   <table class="w3-table w3-striped w3-bordered w3-border">
-  
   <tbody>
   <tr>
   <th>ProductID</th>
@@ -78,7 +77,7 @@ const TopRow = ()=>(
   <th>Cantidad</th>
   </tr>{
     
-    props.data.database.map(((element)=>
+    props.data.map(((element)=>
     <tr key={element.ProductID.N}>
     <td>{element.ProductID.N}</td>
     <td>{element.ProductName.S}</td>
@@ -117,67 +116,51 @@ const InventoryTitle = () =>(
     </div>
 );
 
+
+  
+
 const BotonActualizar= () => (
-  <button class="w3-button w3-purple w3-round w3-margin-left" onClick={this.cliquea}>Actualizar</button>
+  <button className="w3-button w3-purple w3-round w3-margin-left">Actualizar</button>
 );
-
-const Content = () => (
-  <section className="main_content">
-    <Header/>
-    <SalesTitle/>
-    
-    <TopRow/>
-    <BotonActualizar/>
-  
-    
-    <Pie/>
-  </section>
-  
-);
-
-  
-const Texto = props => (
-    <div className="w3-panel w3-sand w3-card-4">
-      <p>
-        <em>{props.mensaje}</em>
-      </p>
-    </div>
-);
-
 
 class Aplicacion extends React.Component {
   
     constructor(props) {
       super(props);
       this.state = {
-        mensaje: 'Presiona el botón para obtener un refrán al azar.'
+        query: []
       };
-      this.cliquea = this.cliquea.bind(this);
     }
   
-    cliquea() {
-      fetch("/refran")  // llamada de AJAX
-        .then(res =>
-          res.json())
-        .then(
-          result => {
-            this.setState({
-              mensaje: result.refran
-            });
-          },
-          error => {
-            this.setState({
-              mensaje: error.message
-            });
-          }
-        );
-    }
+    componentDidUpdate() {
+    fetch("/lenguajes")  // llamada de AJAX
+      .then(res =>
+        res.json())
+      .then(
+        result => {
+          console.log(result);
+          this.setState({
+            query: result
+          });
+        },
+        error => {
+          console.log(error.message);
+        }
+      );
+  }
   
     render() {
-      const { mensaje } = this.state;
+      const  {query} = this.state;
+      {console.log(query);}
       return (
         <div className="wrapper">
-          <Content/>
+          <section className="main_content">
+          <Header/>
+          <SalesTitle/>
+          <TopRow query = {query}/>
+          <BotonActualizar/>
+          <Pie/>
+          </section>
           <SideBar/>
         </div>
       );

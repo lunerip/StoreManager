@@ -127,7 +127,7 @@ var SalesTable = function SalesTable() {
   );
 };
 
-var TopRow = function TopRow() {
+var TopRow = function TopRow(props) {
   return React.createElement(
     "table",
     { "class": "w3-table w3-striped w3-bordered w3-border" },
@@ -158,7 +158,7 @@ var TopRow = function TopRow() {
           "Cantidad"
         )
       ),
-      props.data.database.map(function (element) {
+      props.data.map(function (element) {
         return React.createElement(
           "tr",
           { key: element.ProductID.N },
@@ -228,36 +228,8 @@ var InventoryTitle = function InventoryTitle() {
 var BotonActualizar = function BotonActualizar() {
   return React.createElement(
     "button",
-    { "class": "w3-button w3-purple w3-round w3-margin-left", onClick: _this.cliquea },
+    { className: "w3-button w3-purple w3-round w3-margin-left" },
     "Actualizar"
-  );
-};
-
-var Content = function Content() {
-  return React.createElement(
-    "section",
-    { className: "main_content" },
-    React.createElement(Header, null),
-    React.createElement(SalesTitle, null),
-    React.createElement(TopRow, null),
-    React.createElement(BotonActualizar, null),
-    React.createElement(Pie, null)
-  );
-};
-
-var Texto = function Texto(props) {
-  return React.createElement(
-    "div",
-    { className: "w3-panel w3-sand w3-card-4" },
-    React.createElement(
-      "p",
-      null,
-      React.createElement(
-        "em",
-        null,
-        props.mensaje
-      )
-    )
   );
 };
 
@@ -269,40 +241,49 @@ var Aplicacion = function (_React$Component) {
 
     var _this2 = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
 
-    _this2.state = {
-      mensaje: 'Presiona el botón para obtener un refrán al azar.'
+    _this.state = {
+      query: []
     };
-    _this2.cliquea = _this2.cliquea.bind(_this2);
-    return _this2;
+    return _this;
   }
 
   _createClass(Aplicacion, [{
-    key: "cliquea",
-    value: function cliquea() {
-      var _this3 = this;
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this2 = this;
 
-      fetch("/refran") // llamada de AJAX
+      fetch("/lenguajes") // llamada de AJAX
       .then(function (res) {
         return res.json();
       }).then(function (result) {
-        _this3.setState({
-          mensaje: result.refran
+        console.log(result);
+        _this2.setState({
+          query: result
         });
       }, function (error) {
-        _this3.setState({
-          mensaje: error.message
-        });
+        console.log(error.message);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var mensaje = this.state.mensaje;
+      var query = this.state.query;
 
+      {
+        console.log(query);
+      }
       return React.createElement(
         "div",
         { className: "wrapper" },
-        React.createElement(Content, null),
+        React.createElement(
+          "section",
+          { className: "main_content" },
+          React.createElement(Header, null),
+          React.createElement(SalesTitle, null),
+          React.createElement(TopRow, { query: query }),
+          React.createElement(BotonActualizar, null),
+          React.createElement(Pie, null)
+        ),
         React.createElement(SideBar, null)
       );
     }
