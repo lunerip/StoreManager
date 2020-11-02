@@ -59,7 +59,7 @@ const Pie = () => (
 const Header = ()=> (
     
     <div className="header">
-    <div className="name">Roberto Mateos Contreras</div>
+    <div className="name">Roberto Contreras</div>
     <div>Vendedor | Abarrotes Mateos</div>
     
     </div>  
@@ -74,27 +74,47 @@ const SalesTable = ()=>(
     </div>
 );
 
-const TopRow = ()=>(
-  <div className="mdc-layout-grid">
-      <div className="subtitle">
-        Selecciona los productos 
-      </div>
-      <table>
+const TransactionsTable = ()=>(
+  <table>
         <tr>
+          <th></th>
           <th>Selección</th>
           <th>Producto</th>
           <th>Precio</th>
-          <th>Cantidad</th>
-          <th>Subtotal</th>
+
         </tr>
         <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
+          <td><input type="checkbox" name="name1" /></td>
+          <td>Leche </td>
+          <td>20</td>
+
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="name1" /></td>
+          <td>Galletas </td>
+          <td>25</td>
+
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="name1" /></td>
+          <td>Café</td>
+          <td>100</td>
+
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="name1" /></td>
+          <td>Carnita Asada </td>
+          <td>250</td>
+
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="name1" /></td>
+          <td>Cheve </td>
+          <td>100</td>
+
         </tr>
         
       </table>
-  </div>
 );
 
 const SalesTitle = () =>(
@@ -105,6 +125,7 @@ const SalesTitle = () =>(
       </div>
   </div>
 );
+
 const TransactionTitle = () =>(
   <div className="title"> 
       Transacciones
@@ -113,6 +134,7 @@ const TransactionTitle = () =>(
       </div>
     </div>
 );
+
 const InventoryTitle = () =>(
   <div className="title"> 
       Inventario
