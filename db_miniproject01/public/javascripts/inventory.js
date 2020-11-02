@@ -132,7 +132,7 @@ var TopRow = function TopRow() {
     React.createElement(
       "div",
       { className: "subtitle" },
-      "Selecciona los productos"
+      "Se muestran los productos disponibles"
     ),
     React.createElement(
       "table",
@@ -172,17 +172,172 @@ var TopRow = function TopRow() {
         React.createElement(
           "td",
           null,
-          "Alfreds Futterkiste"
+          React.createElement("input", { type: "checkbox", name: "name1" })
         ),
         React.createElement(
           "td",
           null,
-          "Maria Anders"
+          "Chicas"
         ),
         React.createElement(
           "td",
           null,
-          "Germany"
+          "100 la hora"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "2"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "200"
+        )
+      ),
+      React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "td",
+          null,
+          React.createElement("input", { type: "checkbox", name: "name1" })
+        ),
+        React.createElement(
+          "td",
+          null,
+          "Leche"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "20"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "10"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "200"
+        )
+      ),
+      React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "td",
+          null,
+          React.createElement("input", { type: "checkbox", name: "name1" })
+        ),
+        React.createElement(
+          "td",
+          null,
+          "Galletas"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "25"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "10"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "250"
+        )
+      ),
+      React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "td",
+          null,
+          React.createElement("input", { type: "checkbox", name: "name1" })
+        ),
+        React.createElement(
+          "td",
+          null,
+          "Caf\xE9"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "100"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "6"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "600"
+        )
+      ),
+      React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "td",
+          null,
+          React.createElement("input", { type: "checkbox", name: "name1" })
+        ),
+        React.createElement(
+          "td",
+          null,
+          "Carnita Asada"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "250"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "10"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "2500"
+        )
+      ),
+      React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "td",
+          null,
+          React.createElement("input", { type: "checkbox", name: "name1" })
+        ),
+        React.createElement(
+          "td",
+          null,
+          "Cheve"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "100"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "8"
+        ),
+        React.createElement(
+          "td",
+          null,
+          "800"
         )
       )
     )

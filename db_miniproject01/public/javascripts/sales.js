@@ -142,7 +142,7 @@ var SalesTable = function SalesTable() {
     React.createElement(
       "div",
       { className: "subtitle" },
-      "Total"
+      "C\xE1talogo de productos"
     ),
     React.createElement(
       "div",
@@ -159,7 +159,6 @@ var TransactionsTable = function TransactionsTable() {
     React.createElement(
       "tr",
       null,
-      React.createElement("th", null),
       React.createElement(
         "th",
         null,
@@ -169,6 +168,16 @@ var TransactionsTable = function TransactionsTable() {
         "th",
         null,
         "Producto"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Cantidad"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Contenido"
       ),
       React.createElement(
         "th",
@@ -192,6 +201,16 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
+        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "1 ltr"
+      ),
+      React.createElement(
+        "td",
+        null,
         "20"
       )
     ),
@@ -201,12 +220,22 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
+        React.createElement("input", { type: "checkbox", name: "name2" })
       ),
       React.createElement(
         "td",
         null,
         "Galletas "
+      ),
+      React.createElement(
+        "td",
+        null,
+        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "250 gr"
       ),
       React.createElement(
         "td",
@@ -220,7 +249,7 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
+        React.createElement("input", { type: "checkbox", name: "name3" })
       ),
       React.createElement(
         "td",
@@ -230,6 +259,16 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
+        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "1 kg"
+      ),
+      React.createElement(
+        "td",
+        null,
         "100"
       )
     ),
@@ -239,17 +278,27 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
+        React.createElement("input", { type: "checkbox", name: "name4" })
       ),
       React.createElement(
         "td",
         null,
-        "Carnita Asada "
+        "Carnita Asada (Prime) "
       ),
       React.createElement(
         "td",
         null,
-        "250"
+        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "500 gr"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "300"
       )
     ),
     React.createElement(
@@ -258,7 +307,7 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
+        React.createElement("input", { type: "checkbox", name: "name5" })
       ),
       React.createElement(
         "td",
@@ -268,7 +317,38 @@ var TransactionsTable = function TransactionsTable() {
       React.createElement(
         "td",
         null,
-        "100"
+        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+      ),
+      React.createElement(
+        "td",
+        null,
+        "12 latas"
+      ),
+      React.createElement(
+        "td",
+        null,
+        "150"
+      )
+    )
+  );
+};
+
+var Ticket = function Ticket() {
+  return React.createElement(
+    "table",
+    null,
+    React.createElement(
+      "tr",
+      null,
+      React.createElement(
+        "th",
+        null,
+        "Productos"
+      ),
+      React.createElement(
+        "th",
+        null,
+        "Precio"
       )
     )
   );
@@ -320,6 +400,7 @@ var Content = function Content() {
     React.createElement(Header, null),
     React.createElement(SalesTitle, null),
     React.createElement(SalesTable, null),
+    React.createElement(Ticket, null),
     React.createElement(Pie, null)
   );
 };
