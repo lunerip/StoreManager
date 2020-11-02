@@ -79,40 +79,45 @@ const SalesTable = ()=>(
 const TransactionsTable = ()=>(
   <table>
         <tr>
-          <th></th>
           <th>Selección</th>
           <th>Producto</th>
+          <th>Cantidad</th>
           <th>Precio</th>
 
         </tr>
         <tr>
           <td><input type="checkbox" name="name1" /></td>
           <td>Leche </td>
+          <td>1 ltr</td>
           <td>20</td>
 
         </tr>
         <tr>
           <td><input type="checkbox" name="name1" /></td>
           <td>Galletas </td>
+          <td>250 gr</td>
           <td>25</td>
 
         </tr>
         <tr>
           <td><input type="checkbox" name="name1" /></td>
           <td>Café</td>
+          <td>1 kg</td>
           <td>100</td>
 
         </tr>
         <tr>
           <td><input type="checkbox" name="name1" /></td>
-          <td>Carnita Asada </td>
-          <td>250</td>
+          <td>Carnita Asada (Prime) </td>
+          <td>500 gr</td>
+          <td>300</td>
 
         </tr>
         <tr>
           <td><input type="checkbox" name="name1" /></td>
           <td>Cheve </td>
-          <td>100</td>
+          <td>12 latas</td>
+          <td>150</td>
 
         </tr>
         
