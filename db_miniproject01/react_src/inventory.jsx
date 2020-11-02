@@ -68,62 +68,28 @@ const SalesTable = ()=>(
 );
 
 const TopRow = ()=>(
-  <div className="mdc-layout-grid">
-      <div className="subtitle">
-        Se muestran los productos disponibles
-      </div>
-      <table>
-        <tr>
-          
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Cantidad</th>
-          
-        </tr>
-        <tr>
-          
-          <td>Chicas</td>
-          <td>100 la hora</td>
-          <td>2</td>
-         
-        </tr>
-        <tr>
-       
-          <td>Leche</td>
-          <td>20</td>
-          <td>10</td>
-      
-        </tr>
-        <tr>
-       
-          <td>Galletas</td>
-          <td>25</td>
-          <td>10</td>
-         
-        </tr>
-        <tr>
-       
-          <td>Café</td>
-          <td>100</td>
-          <td>6</td>
-         
-        </tr>
-        <tr>
-        
-          <td>Carnita Asada</td>
-          <td>250</td>
-          <td>10</td>
+  <table class="w3-table w3-striped w3-bordered w3-border">
   
-        </tr>
-        <tr>
-        
-          <td>Cheve</td>
-          <td>100</td>
-          <td>8</td>
-          
-        </tr>
-      </table>
-  </div>
+  <tbody>
+  <tr>
+  <th>ProductID</th>
+  <th>ProductName</th>
+  <th>Price</th>
+  <th>Cantidad</th>
+  </tr>{
+    
+    props.data.database.map(((element)=>
+    <tr key={element.ProductID.N}>
+    <td>{element.ProductID.N}</td>
+    <td>{element.ProductName.S}</td>
+    <td>{element.Price.N}</td>
+    <td>{element.Cantidad.N}</td>
+    </tr>))
+  }
+  </tbody>
+  </table>
+       
+     
 );
 
 const SalesTitle = () =>(
@@ -152,7 +118,7 @@ const InventoryTitle = () =>(
 );
 
 const BotonActualizar= () => (
-  <button class="w3-button w3-purple w3-round w3-margin-left">Actualizar</button>
+  <button class="w3-button w3-purple w3-round w3-margin-left" onClick={this.cliquea}>Actualizar</button>
 );
 
 const Content = () => (
