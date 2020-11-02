@@ -318,7 +318,6 @@ var Content = function Content() {
     React.createElement(Header, null),
     React.createElement(SalesTitle, null),
     React.createElement(TopRow, null),
-    React.createElement(SalesTable, null),
     React.createElement(Pie, null)
   );
 };

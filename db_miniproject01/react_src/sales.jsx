@@ -28,10 +28,8 @@ const BusinessButtons= () => (
 
 );
 
-const botonGenerarTicket =() => (
-
-  <button>Generar Ticket </button>
-
+const BotonGenerarTicket = () => (
+  <button class="w3-button w3-purple w3-round w3-margin-left">Generar Ticket</button>
 )
 
 
@@ -90,12 +88,14 @@ const SalesTable = ()=>(
     </div>
     <div>
       <TransactionsTable/>
+      <div ><BotonGenerarTicket/></div>
+      
     </div>
     <div className="subtitle">
         Ticket
     </div>
     <div>
-      <botonGenerarTicket/>
+      
       <Ticket/>
     </div>
   </div>

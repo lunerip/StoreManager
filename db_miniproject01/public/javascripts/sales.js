@@ -67,6 +67,14 @@ var BusinessButtons = function BusinessButtons() {
   );
 };
 
+var BotonGenerarTicket = function BotonGenerarTicket() {
+  return React.createElement(
+    "button",
+    { "class": "w3-button w3-purple w3-round w3-margin-left" },
+    "Generar Ticket"
+  );
+};
+
 var BarButtons = function BarButtons() {
   return React.createElement(
     "div",
@@ -147,7 +155,12 @@ var SalesTable = function SalesTable() {
     React.createElement(
       "div",
       null,
-      React.createElement(TransactionsTable, null)
+      React.createElement(TransactionsTable, null),
+      React.createElement(
+        "div",
+        null,
+        React.createElement(BotonGenerarTicket, null)
+      )
     ),
     React.createElement(
       "div",

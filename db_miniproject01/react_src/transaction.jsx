@@ -49,7 +49,7 @@ const Logo = () =>(
   );
     
   const Pie = () => (
-      <footer className="w3-container w3-center w3-small">
+      <footer className="w3-container wcenter3- w3-small">
         <span className="w3-mobile">
           &copy; Store Manager 2020
         </span>

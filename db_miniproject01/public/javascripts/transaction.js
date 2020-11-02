@@ -109,7 +109,7 @@ var SideBar = function SideBar() {
 var Pie = function Pie() {
   return React.createElement(
     "footer",
-    { className: "w3-container w3-center w3-small" },
+    { className: "w3-container wcenter3- w3-small" },
     React.createElement(
       "span",
       { className: "w3-mobile" },
