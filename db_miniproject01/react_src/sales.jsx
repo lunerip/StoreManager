@@ -30,7 +30,7 @@ const BusinessButtons= () => (
 
 const BotonGenerarTicket = () => (
   <button class="w3-button w3-purple w3-round w3-margin-left">Generar Ticket</button>
-)
+);
 
 
 const BarButtons = () =>(
