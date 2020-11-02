@@ -311,6 +311,14 @@ var InventoryTitle = function InventoryTitle() {
   );
 };
 
+var BotonActualizar = function BotonActualizar() {
+  return React.createElement(
+    "button",
+    { "class": "w3-button w3-purple w3-round w3-margin-left" },
+    "Actualizar"
+  );
+};
+
 var Content = function Content() {
   return React.createElement(
     "section",
@@ -318,6 +326,7 @@ var Content = function Content() {
     React.createElement(Header, null),
     React.createElement(SalesTitle, null),
     React.createElement(TopRow, null),
+    React.createElement(BotonActualizar, null),
     React.createElement(Pie, null)
   );
 };
