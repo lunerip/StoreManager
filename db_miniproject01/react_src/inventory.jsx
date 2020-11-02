@@ -151,13 +151,17 @@ const InventoryTitle = () =>(
     </div>
 );
 
+const BotonActualizar= () => (
+  <button class="w3-button w3-purple w3-round w3-margin-left">Actualizar</button>
+);
+
 const Content = () => (
   <section className="main_content">
     <Header/>
     <SalesTitle/>
     
     <TopRow/>
-    
+    <BotonActualizar/>
   
     
     <Pie/>
