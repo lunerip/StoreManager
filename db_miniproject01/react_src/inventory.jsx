@@ -102,6 +102,34 @@ const TopRow = props=>(
   
 );
 
+const InventarioNuevo = () => (
+  <div className="mdc-layout-grid">
+      <div className="subtitle">
+        Agregar Inventario
+      </div>
+       <table>
+       <tbody>
+        <tr>
+          <th>ProductID</th>
+          <th>Cantidad a agregar</th>
+          
+        </tr>
+        <th><input type="number"  min="0" max="5"/></th>
+          <th><input type="number"  min="0" max="30"/></th>
+        <tr>
+        </tr>
+        </tbody>
+        </table>
+        
+  </div>
+);
+
+const BotonAgregar= props => (
+  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.update}>
+    Agregar
+  </button>
+);
+
 const SalesTitle = () =>(
   <div className="title"> 
       Reporte de Inventario
@@ -182,7 +210,8 @@ class Aplicacion extends React.Component {
           {this.state.isTableVisible == true && 
             <TopRow query ={query}/>
           }
-          
+          <InventarioNuevo/>
+          <BotonAgregar/>
           <Pie/>
           </section>
           <SideBar/>
