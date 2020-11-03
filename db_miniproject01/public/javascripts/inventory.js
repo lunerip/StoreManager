@@ -199,6 +199,59 @@ var TopRow = function TopRow(props) {
   );
 };
 
+var InventarioNuevo = function InventarioNuevo() {
+  return React.createElement(
+    "div",
+    { className: "mdc-layout-grid" },
+    React.createElement(
+      "div",
+      { className: "subtitle" },
+      "Agregar Inventario"
+    ),
+    React.createElement(
+      "table",
+      null,
+      React.createElement(
+        "tbody",
+        null,
+        React.createElement(
+          "tr",
+          null,
+          React.createElement(
+            "th",
+            null,
+            "ProductID"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Cantidad a agregar"
+          )
+        ),
+        React.createElement(
+          "th",
+          null,
+          React.createElement("input", { type: "number", min: "0", max: "5" })
+        ),
+        React.createElement(
+          "th",
+          null,
+          React.createElement("input", { type: "number", min: "0", max: "30" })
+        ),
+        React.createElement("tr", null)
+      )
+    )
+  );
+};
+
+var BotonAgregar = function BotonAgregar(props) {
+  return React.createElement(
+    "button",
+    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.update },
+    "Agregar"
+  );
+};
+
 var SalesTitle = function SalesTitle() {
   return React.createElement(
     "div",
@@ -300,6 +353,8 @@ var Aplicacion = function (_React$Component) {
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
           this.state.isTableVisible == true && React.createElement(TopRow, { query: query }),
+          React.createElement(InventarioNuevo, null),
+          React.createElement(BotonAgregar, null),
           React.createElement(Pie, null)
         ),
         React.createElement(SideBar, null)
