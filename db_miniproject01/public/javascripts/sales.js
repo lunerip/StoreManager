@@ -138,71 +138,66 @@ var Header = function Header() {
 var TransactionsTable = function TransactionsTable(props) {
   return React.createElement(
     "div",
-    { className: "mdc-layout-grid" },
+    null,
     React.createElement(
       "div",
+      { className: "subtitle" },
+      "Cat\xE1logo"
+    ),
+    React.createElement(
+      "table",
       null,
       React.createElement(
-        "div",
-        { className: "subtitle" },
-        "Cat\xE1logo"
-      ),
-      React.createElement(
-        "table",
+        "tr",
         null,
         React.createElement(
-          "tr",
+          "th",
           null,
-          React.createElement(
-            "th",
-            null,
-            "Producto"
-          ),
-          React.createElement(
-            "th",
-            null,
-            "Cantidad"
-          ),
-          React.createElement(
-            "th",
-            null,
-            "Contenido"
-          ),
-          React.createElement(
-            "th",
-            null,
-            "Precio"
-          )
+          "Producto"
         ),
-        props.query.map(function (element) {
-          return React.createElement(
-            "tr",
-            { key: element.ProductID.N },
-            React.createElement(
-              "td",
-              null,
-              element.ProductName.S
-            ),
-            React.createElement(
-              "td",
-              null,
-              React.createElement("input", { type: "number", min: "0", max: "10" })
-            ),
-            React.createElement(
-              "td",
-              null,
-              element.Cantidad.S
-            ),
-            React.createElement(
-              "td",
-              null,
-              element.Price.N
-            )
-          );
-        })
-      )
-    ),
-    React.createElement(BotonGenerarTicket, null)
+        React.createElement(
+          "th",
+          null,
+          "Cantidad"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Contenido"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Precio"
+        )
+      ),
+      props.query.map(function (element) {
+        return React.createElement(
+          "tr",
+          { key: element.ProductID.N },
+          React.createElement(
+            "td",
+            null,
+            element.ProductName.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            React.createElement("input", { type: "number", min: "0", max: "10", id: element.ProductName.S })
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Cantidad.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Price.N
+          )
+        );
+      })
+    )
   );
 };
 
@@ -248,7 +243,7 @@ var InventoryTitle = function InventoryTitle() {
 var BotonGenerarTicket = function BotonGenerarTicket(props) {
   return React.createElement(
     "button",
-    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.update },
+    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.ticket },
     "Generar Ticket"
   );
 };
@@ -323,10 +318,21 @@ var Aplicacion = function (_React$Component) {
       updated: 0
     };
     _this.actualizar = _this.actualizar.bind(_this);
+    _this.getSaleProducts = _this.getSaleProducts.bind(_this);
     return _this;
   }
 
   _createClass(Aplicacion, [{
+    key: "getSaleProducts",
+    value: function getSaleProducts() {
+      var coffee = document.getElementById("Coffee").value;
+      var cookie = document.getElementById("Galletas").value;
+      var carnita = document.getElementById("Carnita Asada (Prime)").value;
+      var milk = document.getElementById("Leche").value;
+      var cerveza = document.getElementById("Cerveza").value;
+      alert(carnita);
+    }
+  }, {
     key: "actualizar",
     value: function actualizar() {
       var _this2 = this;
@@ -364,7 +370,12 @@ var Aplicacion = function (_React$Component) {
           { className: "main_content" },
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
-          this.state.isTableVisible == true && React.createElement(TransactionsTable, { query: query }),
+          React.createElement(
+            "div",
+            { className: "mdc-layout-grid" },
+            this.state.isTableVisible == true && React.createElement(TransactionsTable, { query: query }),
+            React.createElement(BotonGenerarTicket, { ticket: this.getSaleProducts })
+          ),
           React.createElement(TicketView, null),
           React.createElement(Pie, null)
         ),
