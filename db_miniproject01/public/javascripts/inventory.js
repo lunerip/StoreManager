@@ -127,61 +127,74 @@ var SalesTable = function SalesTable() {
 
 var TopRow = function TopRow(props) {
   return React.createElement(
-    "table",
-    { className: "w3-table w3-striped w3-bordered w3-border" },
+    "div",
+    { className: "mdc-layout-grid" },
     React.createElement(
-      "tbody",
+      "div",
+      { className: "subtitle" },
+      "Productos"
+    ),
+    React.createElement(
+      "div",
       null,
       React.createElement(
-        "tr",
+        "table",
         null,
         React.createElement(
-          "th",
+          "tbody",
           null,
-          "ProductID"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "ProductName"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Price"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Cantidad"
+          React.createElement(
+            "tr",
+            null,
+            React.createElement(
+              "th",
+              null,
+              "ProductID"
+            ),
+            React.createElement(
+              "th",
+              null,
+              "ProductName"
+            ),
+            React.createElement(
+              "th",
+              null,
+              "Price"
+            ),
+            React.createElement(
+              "th",
+              null,
+              "On Stock"
+            )
+          ),
+          props.query.map(function (element) {
+            return React.createElement(
+              "tr",
+              { key: element.ProductID.N },
+              React.createElement(
+                "td",
+                null,
+                element.ProductID.N
+              ),
+              React.createElement(
+                "td",
+                null,
+                element.ProductName.S
+              ),
+              React.createElement(
+                "td",
+                null,
+                element.Price.N
+              ),
+              React.createElement(
+                "td",
+                null,
+                element.Stock.N
+              )
+            );
+          })
         )
-      ),
-      props.data.map(function (element) {
-        return React.createElement(
-          "tr",
-          { key: element.ProductID.N },
-          React.createElement(
-            "td",
-            null,
-            element.ProductID.N
-          ),
-          React.createElement(
-            "td",
-            null,
-            element.ProductName.S
-          ),
-          React.createElement(
-            "td",
-            null,
-            element.Price.N
-          ),
-          React.createElement(
-            "td",
-            null,
-            element.Cantidad.N
-          )
-        );
-      })
+      )
     )
   );
 };
@@ -190,7 +203,7 @@ var SalesTitle = function SalesTitle() {
   return React.createElement(
     "div",
     { className: "title" },
-    "Inventario",
+    "Reporte de Inventario",
     React.createElement(
       "div",
       { className: "info" },
@@ -241,7 +254,8 @@ var Aplicacion = function (_React$Component) {
 
     _this.state = {
       isTableVisible: false,
-      query: []
+      query: [],
+      updated: 0
     };
     _this.actualizar = _this.actualizar.bind(_this);
     return _this;
@@ -258,7 +272,8 @@ var Aplicacion = function (_React$Component) {
       }).then(function (result) {
         _this2.setState({
           query: result.data,
-          isTableVisible: true
+          isTableVisible: true,
+          updated: 1
         });
         console.log(_this2.state.query);
       }, function (error) {
@@ -268,7 +283,13 @@ var Aplicacion = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+
+      if (this.state.updated == 0) {
+        this.actualizar();
+      }
       var query = this.state.query;
+
+      console.log(query);
 
       return React.createElement(
         "div",
@@ -278,8 +299,7 @@ var Aplicacion = function (_React$Component) {
           { className: "main_content" },
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
-          React.createElement(BotonActualizar, { update: this.actualizar }),
-          this.state.isTableVisible == true && query != undefined && React.createElement(TopRow, { query: query }),
+          this.state.isTableVisible == true && React.createElement(TopRow, { query: query }),
           React.createElement(Pie, null)
         ),
         React.createElement(SideBar, null)

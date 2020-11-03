@@ -78,91 +78,42 @@ const Header = ()=> (
     </div>  
 );
 
-const SalesTable = ()=>(
-  
+
+const TransactionsTable = props=>(
   <div className="mdc-layout-grid">
-    <div className="subtitle">
-        Cátalogo de productos
-    </div>
-    <div>
-      <TransactionsTable/>
-      
-      
-    </div>
-    <div className="subtitle">
-        Ticket
-    </div>
-    <div>
-      
-      <Ticket/>
-    </div>
-  </div>
-
-);
-
-const TransactionsTable = ()=>(
-
-  <table>
-        <tr>
-          
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Contenido</th>
-          <th>Precio</th>
-
-        </tr>
-        <tr>
-          
-          <td>Leche </td>
-          <td><input type="number" value="0" min="0" max="10"/></td>
-          <td>1 ltr</td>
-          <td>20</td>
-
-        </tr>
-        <tr>
-          
-          <td>Chaparritas </td>
-          <td><input type="number" value="0" min="0" max="10"/></td>
-          <td>500ml </td>
-          <td>20</td>
-
-        </tr>
-        <tr>
-          
-          <td>Galletas </td>
-          <td><input type="number" value="0" min="0" max="10"/></td>
-          <td>250 gr</td>
-          <td>25</td>
-
-        </tr>
-        <tr>
-          
-          <td>Café</td>
-          <td><input type="number" value="0" min="0" max="10"/></td>
-          <td>1 kg</td>
-          <td>100</td>
-
-        </tr>
-        <tr>
-          
-          <td>Carnita Asada (Prime) </td>
-          <td><input type="number" value="0" min="0" max="10"/></td>
-          <td>500 gr</td>
-          <td>300</td>
-
-        </tr>
-        <tr>
-          
-          <td>Cheve </td>
-          <td><input type="number" value="0" min="0" max="10"/></td>
-          <td>12 latas</td>
-          <td>150</td>
-
-        </tr>
+        <div>
+          <div className="subtitle">
+            Catálogo
+          </div>
+          <table>
+            <tr>
+              
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Contenido</th>
+              <th>Precio</th>
         
-      </table>
+            </tr>
+           
+           {
+             props.query.map(((element)=>
+        
+                <tr key={element.ProductID.N}>
+                  <td>{element.ProductName.S}</td>
+                  <td><input type="number" value="0" min="0" max="10"/></td>
+                  <td>{element.Cantidad.S}</td>
+                  <td>{element.Price.N}</td>
+                </tr>
+                )
+              )
+            
+            }
+                
+          </table>
+        </div>
+    </div>
 
-
+  
 );
 
 
@@ -217,22 +168,6 @@ const BotonGenerarTicket = () => (
   <button class="w3-button w3-purple w3-round w3-margin-left">Generar Ticket</button>
 );
 
-const Content = () => (
-  
-  <section className="main_content">
-    <Header/>
-    <SalesTitle/>
-    
-    <SalesTable/>
-    <BotonGenerarTicket/>
-
-    
-
-    <Pie/>
-  </section>
-  
-);
-
   
 const Texto = props => (
 
@@ -244,40 +179,58 @@ const Texto = props => (
 
 );
 
-
+    
 class Aplicacion extends React.Component {
   
     constructor(props) {
       super(props);
       this.state = {
-        mensaje: 'Presiona el botón para obtener un refrán al azar.'
+        isTableVisible:false,
+        query: [],
+        updated: 0
       };
-      this.cliquea = this.cliquea.bind(this);
+      this.actualizar = this.actualizar.bind(this);
     }
   
-    cliquea() {
-      fetch("/refran")  // llamada de AJAX
-        .then(res =>
-          res.json())
-        .then(
-          result => {
-            this.setState({
-              mensaje: result.refran
-            });
-          },
-          error => {
-            this.setState({
-              mensaje: error.message
-            });
-          }
-        );
+    actualizar() {
+    fetch("/productos")  // llamada de AJAX
+      .then(res =>
+        res.json())
+      .then(
+        result => {
+          this.setState({
+            query: result.data,
+            isTableVisible: true,
+            updated:1
+          });
+          console.log(this.state.query);
+        },
+        error => {
+          console.log(error.message);
+        }
+      );
     }
   
     render() {
-      const { mensaje } = this.state;
+    
+    if(this.state.updated == 0){
+      this.actualizar();
+    }
+    const  {query} = this.state;
+    console.log(query);
+    
       return (
         <div className="wrapper">
-          <Content/>
+          <section className="main_content">
+            <Header/>
+            <SalesTitle/>
+            
+            {this.state.isTableVisible == true && 
+              <TransactionsTable query ={query}/>
+            }
+            
+            <Pie/>
+          </section>
           <SideBar/>
         </div>
       );

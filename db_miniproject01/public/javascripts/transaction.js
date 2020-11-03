@@ -135,126 +135,7 @@ var Header = function Header() {
   );
 };
 
-var TransactionsTable = function TransactionsTable() {
-  return React.createElement(
-    "table",
-    null,
-    React.createElement(
-      "tr",
-      null,
-      React.createElement("th", null),
-      React.createElement(
-        "th",
-        null,
-        "Ticket"
-      ),
-      React.createElement(
-        "th",
-        null,
-        "Fecha"
-      ),
-      React.createElement(
-        "th",
-        null,
-        "Subtotal"
-      ),
-      React.createElement(
-        "th",
-        null,
-        "Total"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "000001 "
-      ),
-      React.createElement(
-        "td",
-        null,
-        "01/11/2020"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "100"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "116"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "000002 "
-      ),
-      React.createElement(
-        "td",
-        null,
-        "01/11/2020"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "150"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "174"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "checkbox", name: "name1" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "000003"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "01/11/2020"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "60"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "69.6"
-      )
-    )
-  );
-};
-
-var TopRow = function TopRow() {
+var TopRow = function TopRow(props) {
   return React.createElement(
     "div",
     { className: "mdc-layout-grid" },
@@ -266,7 +147,60 @@ var TopRow = function TopRow() {
         { className: "subtitle" },
         "Historial de Ventas"
       ),
-      React.createElement(TransactionsTable, null)
+      React.createElement(
+        "table",
+        null,
+        React.createElement(
+          "tr",
+          null,
+          React.createElement(
+            "th",
+            null,
+            "Ticket"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Fecha"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Subtotal"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Total"
+          )
+        ),
+        props.query.map(function (element) {
+          return React.createElement(
+            "tr",
+            { key: element.ticket.N },
+            React.createElement(
+              "td",
+              null,
+              element.ticket.N
+            ),
+            React.createElement(
+              "td",
+              null,
+              element.date.S
+            ),
+            React.createElement(
+              "td",
+              null,
+              element.subtotal.N
+            ),
+            React.createElement(
+              "td",
+              null,
+              element.total.N
+            )
+          );
+        })
+      )
     )
   );
 };
@@ -332,39 +266,55 @@ var Aplicacion = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
 
     _this.state = {
-      mensaje: 'Presiona el botón para obtener un refrán al azar.'
+      isTableVisible: false,
+      query: [],
+      updated: 0
     };
-    _this.cliquea = _this.cliquea.bind(_this);
+    _this.actualizar = _this.actualizar.bind(_this);
     return _this;
   }
 
   _createClass(Aplicacion, [{
-    key: "cliquea",
-    value: function cliquea() {
+    key: "actualizar",
+    value: function actualizar() {
       var _this2 = this;
 
-      fetch("/refran") // llamada de AJAX
+      fetch("/transacciones") // llamada de AJAX
       .then(function (res) {
         return res.json();
       }).then(function (result) {
         _this2.setState({
-          mensaje: result.refran
+          query: result.data,
+          isTableVisible: true,
+          updated: 1
         });
+        console.log(_this2.state.query);
       }, function (error) {
-        _this2.setState({
-          mensaje: error.message
-        });
+        console.log(error.message);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var mensaje = this.state.mensaje;
+
+      if (this.state.updated == 0) {
+        this.actualizar();
+      }
+      var query = this.state.query;
+
+      console.log(query);
 
       return React.createElement(
         "div",
         { className: "wrapper" },
-        React.createElement(Content, null),
+        React.createElement(
+          "section",
+          { className: "main_content" },
+          React.createElement(Header, null),
+          React.createElement(TransactionTitle, null),
+          this.state.isTableVisible == true && React.createElement(TopRow, { query: query }),
+          React.createElement(Pie, null)
+        ),
         React.createElement(SideBar, null)
       );
     }

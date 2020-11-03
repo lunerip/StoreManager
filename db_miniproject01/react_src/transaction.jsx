@@ -66,52 +66,36 @@ const Logo = () =>(
   );
   
 
-
-  const TransactionsTable = ()=>(
-    <table>
-          <tr>
-            <th></th>
-            <th>Ticket</th>
-            <th>Fecha</th>
-            <th>Subtotal</th>
-            <th>Total</th>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="name1" /></td>
-            <td>000001 </td>
-            <td>01/11/2020</td>
-            <td>100</td>
-            <td>116</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="name1" /></td>
-            <td>000002 </td>
-            <td>01/11/2020</td>
-            <td>150</td>
-            <td>174</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="name1" /></td>
-            <td>000003</td>
-            <td>01/11/2020</td>
-            <td>60</td>
-            <td>69.6</td>
-          </tr>
-          
-        </table>
-  );
   
-  const TopRow = ()=>(
+  const TopRow = props=>(
     <div className="mdc-layout-grid">
         <div>
           <div className="subtitle">
             Historial de Ventas
           </div>
-          <TransactionsTable/>
+          <table>
+          <tr>
+            <th>Ticket</th>
+            <th>Fecha</th>
+            <th>Subtotal</th>
+            <th>Total</th>
+          </tr>
+          {
+           props.query.map(((element)=>
+           
+              
+              <tr key={element.ticket.N}>
+                <td>{element.ticket.N}</td>
+                <td>{element.date.S}</td>
+                <td>{element.subtotal.N}</td>
+                <td>{element.total.N}</td>
+              </tr>
+              )
+            )
+          }
+    </table>
         </div>
     </div>
-    
-    
   );
   
 
@@ -154,46 +138,64 @@ const Logo = () =>(
   );
   
   
-  class Aplicacion extends React.Component {
-    
-      constructor(props) {
-        super(props);
-        this.state = {
-          mensaje: 'Presiona el botón para obtener un refrán al azar.'
-        };
-        this.cliquea = this.cliquea.bind(this);
-      }
-    
-      cliquea() {
-        fetch("/refran")  // llamada de AJAX
-          .then(res =>
-            res.json())
-          .then(
-            result => {
-              this.setState({
-                mensaje: result.refran
-              });
-            },
-            error => {
-              this.setState({
-                mensaje: error.message
-              });
-            }
-          );
-      }
-    
-      render() {
-        const { mensaje } = this.state;
-        return (
-          <div className="wrapper">
-            <Content/>
-            <SideBar/>
-          </div>
-        );
-      }
+class Aplicacion extends React.Component {
+  
+    constructor(props) {
+      super(props);
+      this.state = {
+        isTableVisible:false,
+        query: [],
+        updated: 0
+      };
+      this.actualizar = this.actualizar.bind(this);
     }
+  
+    actualizar() {
+    fetch("/transacciones")  // llamada de AJAX
+      .then(res =>
+        res.json())
+      .then(
+        result => {
+          this.setState({
+            query: result.data,
+            isTableVisible: true,
+            updated:1
+          });
+          console.log(this.state.query);
+        },
+        error => {
+          console.log(error.message);
+        }
+      );
+    }
+  
+    render() {
     
-    ReactDOM.render(
-      <Aplicacion />,
-      document.getElementById('root')
-    );
+    if(this.state.updated == 0){
+      this.actualizar();
+    }
+    const  {query} = this.state;
+    console.log(query);
+    
+      return (
+        <div className="wrapper">
+          <section className="main_content">
+          <Header/>
+          <TransactionTitle/>
+          
+          {this.state.isTableVisible == true && 
+            <TopRow query ={query}/>
+          }
+          
+          <Pie/>
+          </section>
+          <SideBar/>
+        </div>
+      );
+    }
+  }
+  
+  ReactDOM.render(
+    <Aplicacion />,
+    document.getElementById('root')
+  );

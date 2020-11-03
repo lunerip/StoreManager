@@ -20,7 +20,7 @@ async function getScan(params){
         return scanned.Items;
             
     }catch(err){
-        console.log("Error! Kill yourself...", err);
+        console.log("Error! Something went wrong", err);
     }
 }
 
@@ -29,11 +29,11 @@ var router = express.Router();
 
 
 router.get('/productos', function(req, res, next) {
-    const params = {"TableName": 'Products'};
+    const TableName = 'Products'
+    const params = {TableName};
     const db = getScan(params).then(
         function(data){
             res.json({data});
-            console.log({data});
         }
     );
     

@@ -135,203 +135,71 @@ var Header = function Header() {
   );
 };
 
-var SalesTable = function SalesTable() {
+var TransactionsTable = function TransactionsTable(props) {
   return React.createElement(
     "div",
     { className: "mdc-layout-grid" },
     React.createElement(
       "div",
-      { className: "subtitle" },
-      "C\xE1talogo de productos"
-    ),
-    React.createElement(
-      "div",
-      null,
-      React.createElement(TransactionsTable, null)
-    ),
-    React.createElement(
-      "div",
-      { className: "subtitle" },
-      "Ticket"
-    ),
-    React.createElement(
-      "div",
-      null,
-      React.createElement(Ticket, null)
-    )
-  );
-};
-
-var TransactionsTable = function TransactionsTable() {
-  return React.createElement(
-    "table",
-    null,
-    React.createElement(
-      "tr",
       null,
       React.createElement(
-        "th",
-        null,
-        "Producto"
+        "div",
+        { className: "subtitle" },
+        "Cat\xE1logo"
       ),
       React.createElement(
-        "th",
+        "table",
         null,
-        "Cantidad"
-      ),
-      React.createElement(
-        "th",
-        null,
-        "Contenido"
-      ),
-      React.createElement(
-        "th",
-        null,
-        "Precio"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        "Leche "
-      ),
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "1 ltr"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "20"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        "Chaparritas "
-      ),
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "500ml "
-      ),
-      React.createElement(
-        "td",
-        null,
-        "20"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        "Galletas "
-      ),
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "250 gr"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "25"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        "Caf\xE9"
-      ),
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "1 kg"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "100"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        "Carnita Asada (Prime) "
-      ),
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "500 gr"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "300"
-      )
-    ),
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "td",
-        null,
-        "Cheve "
-      ),
-      React.createElement(
-        "td",
-        null,
-        React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
-      ),
-      React.createElement(
-        "td",
-        null,
-        "12 latas"
-      ),
-      React.createElement(
-        "td",
-        null,
-        "150"
+        React.createElement(
+          "tr",
+          null,
+          React.createElement(
+            "th",
+            null,
+            "Producto"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Cantidad"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Contenido"
+          ),
+          React.createElement(
+            "th",
+            null,
+            "Precio"
+          )
+        ),
+        props.query.map(function (element) {
+          return React.createElement(
+            "tr",
+            { key: element.ProductID.N },
+            React.createElement(
+              "td",
+              null,
+              element.ProductName.S
+            ),
+            React.createElement(
+              "td",
+              null,
+              React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+            ),
+            React.createElement(
+              "td",
+              null,
+              element.Cantidad.S
+            ),
+            React.createElement(
+              "td",
+              null,
+              element.Price.N
+            )
+          );
+        })
       )
     )
   );
@@ -405,18 +273,6 @@ var BotonGenerarTicket = function BotonGenerarTicket() {
   );
 };
 
-var Content = function Content() {
-  return React.createElement(
-    "section",
-    { className: "main_content" },
-    React.createElement(Header, null),
-    React.createElement(SalesTitle, null),
-    React.createElement(SalesTable, null),
-    React.createElement(BotonGenerarTicket, null),
-    React.createElement(Pie, null)
-  );
-};
-
 var Texto = function Texto(props) {
   return React.createElement(
     "div",
@@ -442,39 +298,55 @@ var Aplicacion = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
 
     _this.state = {
-      mensaje: 'Presiona el botón para obtener un refrán al azar.'
+      isTableVisible: false,
+      query: [],
+      updated: 0
     };
-    _this.cliquea = _this.cliquea.bind(_this);
+    _this.actualizar = _this.actualizar.bind(_this);
     return _this;
   }
 
   _createClass(Aplicacion, [{
-    key: "cliquea",
-    value: function cliquea() {
+    key: "actualizar",
+    value: function actualizar() {
       var _this2 = this;
 
-      fetch("/refran") // llamada de AJAX
+      fetch("/productos") // llamada de AJAX
       .then(function (res) {
         return res.json();
       }).then(function (result) {
         _this2.setState({
-          mensaje: result.refran
+          query: result.data,
+          isTableVisible: true,
+          updated: 1
         });
+        console.log(_this2.state.query);
       }, function (error) {
-        _this2.setState({
-          mensaje: error.message
-        });
+        console.log(error.message);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var mensaje = this.state.mensaje;
+
+      if (this.state.updated == 0) {
+        this.actualizar();
+      }
+      var query = this.state.query;
+
+      console.log(query);
 
       return React.createElement(
         "div",
         { className: "wrapper" },
-        React.createElement(Content, null),
+        React.createElement(
+          "section",
+          { className: "main_content" },
+          React.createElement(Header, null),
+          React.createElement(SalesTitle, null),
+          this.state.isTableVisible == true && React.createElement(TransactionsTable, { query: query }),
+          React.createElement(Pie, null)
+        ),
         React.createElement(SideBar, null)
       );
     }

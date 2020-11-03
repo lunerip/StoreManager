@@ -68,36 +68,43 @@ const SalesTable = ()=>(
 );
 
 const TopRow = props=>(
-  <table className="w3-table w3-striped w3-bordered w3-border">
-    <tbody>
-    <tr>
-    <th>ProductID</th>
-    <th>ProductName</th>
-    <th>Price</th>
-    <th>Cantidad</th>
-    </tr>
-    {
-       props.data.map(((element)=>
-       
-          <tr key={element.ProductID.N}>
-          <td>{element.ProductID.N}</td>
-          <td>{element.ProductName.S}</td>
-          <td>{element.Price.N}</td>
-          <td>{element.Cantidad.N}</td>
-          </tr>
-          )
-        )
+  
+  <div className="mdc-layout-grid">
+    <div className="subtitle">
+        Productos
+    </div>
+    <div>
+      <table>
+        <tbody>
+        <tr>
+        <th>ProductID</th>
+        <th>ProductName</th>
+        <th>Price</th>
+        <th>On Stock</th>
+        </tr>
+        {
+           props.query.map(((element)=>
+    
+              <tr key={element.ProductID.N}>
+              <td>{element.ProductID.N}</td>
+              <td>{element.ProductName.S}</td>
+              <td>{element.Price.N}</td>
+              <td>{element.Stock.N}</td>
+              </tr>
+              )
+            )
         
-    }
-    </tbody>
-  </table>
-       
-     
+        }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
 );
 
 const SalesTitle = () =>(
   <div className="title"> 
-      Inventario
+      Reporte de Inventario
       <div className="info">
         Empleado: EM020398
       </div>
@@ -120,9 +127,6 @@ const InventoryTitle = () =>(
     </div>
 );
 
-
-  
-
 const BotonActualizar= props => (
   <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.update}>
     Actualizar
@@ -135,7 +139,8 @@ class Aplicacion extends React.Component {
       super(props);
       this.state = {
         isTableVisible:false,
-        query: []
+        query: [],
+        updated: 0
       };
       this.actualizar = this.actualizar.bind(this);
     }
@@ -148,7 +153,8 @@ class Aplicacion extends React.Component {
         result => {
           this.setState({
             query: result.data,
-            isTableVisible: true
+            isTableVisible: true,
+            updated:1
           });
           console.log(this.state.query);
         },
@@ -159,16 +165,21 @@ class Aplicacion extends React.Component {
     }
   
     render() {
+    
+    if(this.state.updated == 0){
+      this.actualizar();
+    }
     const  {query} = this.state;
+    console.log(query);
+    
       return (
         <div className="wrapper">
           <section className="main_content">
           <Header/>
           <SalesTitle/>
-          <BotonActualizar update = {this.actualizar}/>
           
           
-          {this.state.isTableVisible == true &&  query != undefined &&
+          {this.state.isTableVisible == true && 
             <TopRow query ={query}/>
           }
           
