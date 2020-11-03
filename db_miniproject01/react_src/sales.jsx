@@ -80,7 +80,6 @@ const Header = ()=> (
 
 
 const TransactionsTable = props=>(
-  <div className="mdc-layout-grid">
     <div>
       <div className="subtitle">
         Catálogo
@@ -96,7 +95,7 @@ const TransactionsTable = props=>(
          props.query.map(((element)=>
             <tr key={element.ProductID.N}>
               <td>{element.ProductName.S}</td>
-              <td><input type="number"  min="0" max="10"/></td>
+              <td><input type="number"  min="0" max="10" id={element.ProductName.S}/></td>
               <td>{element.Cantidad.S}</td>
               <td>{element.Price.N}</td>
             </tr>
@@ -106,9 +105,9 @@ const TransactionsTable = props=>(
             
       </table>
     </div>
-    <BotonGenerarTicket />
-  </div>
+    
 );
+
 
 
 const SalesTitle = () =>(
@@ -146,7 +145,7 @@ const InventoryTitle = () =>(
 
 
 const BotonGenerarTicket= props => (
-  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.update}>
+  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.ticket}>
     Generar Ticket
   </button>
 );
@@ -190,6 +189,16 @@ class Aplicacion extends React.Component {
         updated: 0
       };
       this.actualizar = this.actualizar.bind(this);
+      this.getSaleProducts = this.getSaleProducts.bind(this);
+    }
+    
+    getSaleProducts(){
+      var coffee = document.getElementById("Coffee").value;
+      var cookie = document.getElementById("Galletas").value;
+      var carnita = document.getElementById("Carnita Asada (Prime)").value;
+      var milk = document.getElementById("Leche").value;
+      var cerveza = document.getElementById("Cerveza").value;
+      alert(carnita);
     }
   
     actualizar() {
@@ -224,10 +233,15 @@ class Aplicacion extends React.Component {
           <section className="main_content">
             <Header/>
             <SalesTitle/>
+            <div className="mdc-layout-grid">
+              {this.state.isTableVisible == true && 
+                
+                <TransactionsTable query ={query}/>
+              }
+              <BotonGenerarTicket ticket = {this.getSaleProducts}/>
+            </div>
             
-            {this.state.isTableVisible == true && 
-              <TransactionsTable query ={query}/>
-            }
+            
             
             <TicketView/>
             <Pie/>
