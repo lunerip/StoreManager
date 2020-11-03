@@ -68,24 +68,28 @@ const SalesTable = ()=>(
 );
 
 const TopRow = props=>(
-  <table class="w3-table w3-striped w3-bordered w3-border">
-  <tbody>
-  <tr>
-  <th>ProductID</th>
-  <th>ProductName</th>
-  <th>Price</th>
-  <th>Cantidad</th>
-  </tr>{
-    
-    props.data.map(((element)=>
-    <tr key={element.ProductID.N}>
-    <td>{element.ProductID.N}</td>
-    <td>{element.ProductName.S}</td>
-    <td>{element.Price.N}</td>
-    <td>{element.Cantidad.N}</td>
-    </tr>))
-  }
-  </tbody>
+  <table className="w3-table w3-striped w3-bordered w3-border">
+    <tbody>
+    <tr>
+    <th>ProductID</th>
+    <th>ProductName</th>
+    <th>Price</th>
+    <th>Cantidad</th>
+    </tr>
+    {
+       props.data.map(((element)=>
+       
+          <tr key={element.ProductID.N}>
+          <td>{element.ProductID.N}</td>
+          <td>{element.ProductName.S}</td>
+          <td>{element.Price.N}</td>
+          <td>{element.Cantidad.N}</td>
+          </tr>
+          )
+        )
+        
+    }
+    </tbody>
   </table>
        
      
@@ -119,8 +123,10 @@ const InventoryTitle = () =>(
 
   
 
-const BotonActualizar= () => (
-  <button className="w3-button w3-purple w3-round w3-margin-left">Actualizar</button>
+const BotonActualizar= props => (
+  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.update}>
+    Actualizar
+  </button>
 );
 
 class Aplicacion extends React.Component {
@@ -128,37 +134,44 @@ class Aplicacion extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
+        isTableVisible:false,
         query: []
       };
+      this.actualizar = this.actualizar.bind(this);
     }
   
-    componentDidUpdate() {
-    fetch("/lenguajes")  // llamada de AJAX
+    actualizar() {
+    fetch("/productos")  // llamada de AJAX
       .then(res =>
         res.json())
       .then(
         result => {
-          console.log(result);
           this.setState({
-            query: result
+            query: result.data,
+            isTableVisible: true
           });
+          console.log(this.state.query);
         },
         error => {
           console.log(error.message);
         }
       );
-  }
+    }
   
     render() {
-      const  {query} = this.state;
-      {console.log(query);}
+    const  {query} = this.state;
       return (
         <div className="wrapper">
           <section className="main_content">
           <Header/>
           <SalesTitle/>
+          <BotonActualizar update = {this.actualizar}/>
           
-          <BotonActualizar/>
+          
+          {this.state.isTableVisible == true &&  query != undefined &&
+            <TopRow query ={query}/>
+          }
+          
           <Pie/>
           </section>
           <SideBar/>

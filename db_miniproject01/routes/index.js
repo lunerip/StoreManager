@@ -33,8 +33,10 @@ router.get('/productos', function(req, res, next) {
     const db = getScan(params).then(
         function(data){
             res.json({data});
+            console.log({data});
         }
     );
+    
 });
 
 router.get('/transacciones', function(req, res, next) {

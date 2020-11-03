@@ -128,7 +128,7 @@ var SalesTable = function SalesTable() {
 var TopRow = function TopRow(props) {
   return React.createElement(
     "table",
-    { "class": "w3-table w3-striped w3-bordered w3-border" },
+    { className: "w3-table w3-striped w3-bordered w3-border" },
     React.createElement(
       "tbody",
       null,
@@ -223,10 +223,10 @@ var InventoryTitle = function InventoryTitle() {
   );
 };
 
-var BotonActualizar = function BotonActualizar() {
+var BotonActualizar = function BotonActualizar(props) {
   return React.createElement(
     "button",
-    { className: "w3-button w3-purple w3-round w3-margin-left" },
+    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.update },
     "Actualizar"
   );
 };
@@ -240,24 +240,27 @@ var Aplicacion = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Aplicacion.__proto__ || Object.getPrototypeOf(Aplicacion)).call(this, props));
 
     _this.state = {
+      isTableVisible: false,
       query: []
     };
+    _this.actualizar = _this.actualizar.bind(_this);
     return _this;
   }
 
   _createClass(Aplicacion, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    key: "actualizar",
+    value: function actualizar() {
       var _this2 = this;
 
-      fetch("/lenguajes") // llamada de AJAX
+      fetch("/productos") // llamada de AJAX
       .then(function (res) {
         return res.json();
       }).then(function (result) {
-        console.log(result);
         _this2.setState({
-          query: result
+          query: result.data,
+          isTableVisible: true
         });
+        console.log(_this2.state.query);
       }, function (error) {
         console.log(error.message);
       });
@@ -267,9 +270,6 @@ var Aplicacion = function (_React$Component) {
     value: function render() {
       var query = this.state.query;
 
-      {
-        console.log(query);
-      }
       return React.createElement(
         "div",
         { className: "wrapper" },
@@ -278,7 +278,8 @@ var Aplicacion = function (_React$Component) {
           { className: "main_content" },
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
-          React.createElement(BotonActualizar, null),
+          React.createElement(BotonActualizar, { update: this.actualizar }),
+          this.state.isTableVisible == true && query != undefined && React.createElement(TopRow, { query: query }),
           React.createElement(Pie, null)
         ),
         React.createElement(SideBar, null)
