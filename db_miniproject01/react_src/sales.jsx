@@ -81,54 +81,34 @@ const Header = ()=> (
 
 const TransactionsTable = props=>(
   <div className="mdc-layout-grid">
-        <div>
-          <div className="subtitle">
-            Catálogo
-          </div>
-          <table>
-            <tr>
-              
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Contenido</th>
-              <th>Precio</th>
-        
+    <div>
+      <div className="subtitle">
+        Catálogo
+      </div>
+      <table>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Contenido</th>
+          <th>Precio</th>
+        </tr>
+       {
+         props.query.map(((element)=>
+            <tr key={element.ProductID.N}>
+              <td>{element.ProductName.S}</td>
+              <td><input type="number"  min="0" max="10"/></td>
+              <td>{element.Cantidad.S}</td>
+              <td>{element.Price.N}</td>
             </tr>
-           
-           {
-             props.query.map(((element)=>
-        
-                <tr key={element.ProductID.N}>
-                  <td>{element.ProductName.S}</td>
-                  <td><input type="number" value="0" min="0" max="10"/></td>
-                  <td>{element.Cantidad.S}</td>
-                  <td>{element.Price.N}</td>
-                </tr>
-                )
-              )
+            )
+          )
+        }
             
-            }
-                
-          </table>
-        </div>
+      </table>
     </div>
-
-  
+    <BotonGenerarTicket />
+  </div>
 );
-
-
-
-const Ticket = () =>(
-
-  <table>
-
-    <tr>
-      <th>Productos</th>
-      <th>Precio</th>
-    </tr>
-
-  </table>
-)
 
 
 const SalesTitle = () =>(
@@ -164,10 +144,12 @@ const InventoryTitle = () =>(
 
 );
 
-const BotonGenerarTicket = () => (
-  <button class="w3-button w3-purple w3-round w3-margin-left">Generar Ticket</button>
-);
 
+const BotonGenerarTicket= props => (
+  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.update}>
+    Generar Ticket
+  </button>
+);
   
 const Texto = props => (
 
@@ -177,6 +159,24 @@ const Texto = props => (
       </p>
     </div>
 
+);
+
+const TicketView = () => (
+  <div className="mdc-layout-grid">
+      <div className="subtitle">
+        Ticket
+      </div>
+       <table>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+        </table>
+        <div className="subtitle">
+        Total: $
+      </div>
+  </div>
 );
 
     
@@ -229,6 +229,7 @@ class Aplicacion extends React.Component {
               <TransactionsTable query ={query}/>
             }
             
+            <TicketView/>
             <Pie/>
           </section>
           <SideBar/>

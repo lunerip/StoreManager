@@ -186,7 +186,7 @@ var TransactionsTable = function TransactionsTable(props) {
             React.createElement(
               "td",
               null,
-              React.createElement("input", { type: "number", value: "0", min: "0", max: "10" })
+              React.createElement("input", { type: "number", min: "0", max: "10" })
             ),
             React.createElement(
               "td",
@@ -201,28 +201,8 @@ var TransactionsTable = function TransactionsTable(props) {
           );
         })
       )
-    )
-  );
-};
-
-var Ticket = function Ticket() {
-  return React.createElement(
-    "table",
-    null,
-    React.createElement(
-      "tr",
-      null,
-      React.createElement(
-        "th",
-        null,
-        "Productos"
-      ),
-      React.createElement(
-        "th",
-        null,
-        "Precio"
-      )
-    )
+    ),
+    React.createElement(BotonGenerarTicket, null)
   );
 };
 
@@ -265,10 +245,10 @@ var InventoryTitle = function InventoryTitle() {
   );
 };
 
-var BotonGenerarTicket = function BotonGenerarTicket() {
+var BotonGenerarTicket = function BotonGenerarTicket(props) {
   return React.createElement(
     "button",
-    { "class": "w3-button w3-purple w3-round w3-margin-left" },
+    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.update },
     "Generar Ticket"
   );
 };
@@ -285,6 +265,46 @@ var Texto = function Texto(props) {
         null,
         props.mensaje
       )
+    )
+  );
+};
+
+var TicketView = function TicketView() {
+  return React.createElement(
+    "div",
+    { className: "mdc-layout-grid" },
+    React.createElement(
+      "div",
+      { className: "subtitle" },
+      "Ticket"
+    ),
+    React.createElement(
+      "table",
+      null,
+      React.createElement(
+        "tr",
+        null,
+        React.createElement(
+          "th",
+          null,
+          "Producto"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Cantidad"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Subtotal"
+        )
+      )
+    ),
+    React.createElement(
+      "div",
+      { className: "subtitle" },
+      "Total: $"
     )
   );
 };
@@ -345,6 +365,7 @@ var Aplicacion = function (_React$Component) {
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
           this.state.isTableVisible == true && React.createElement(TransactionsTable, { query: query }),
+          React.createElement(TicketView, null),
           React.createElement(Pie, null)
         ),
         React.createElement(SideBar, null)
