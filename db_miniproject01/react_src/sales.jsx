@@ -192,6 +192,7 @@ class Aplicacion extends React.Component {
       this.getSaleProducts = this.getSaleProducts.bind(this);
     }
     
+    
     getSaleProducts(){
       var coffee = document.getElementById("Coffee").value;
       var cookie = document.getElementById("Galletas").value;
