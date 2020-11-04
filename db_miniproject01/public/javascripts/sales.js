@@ -53,16 +53,6 @@ var BusinessButtons = function BusinessButtons() {
         React.createElement("i", { className: "fas fa-file-invoice-dollar" }),
         "Inventario"
       )
-    ),
-    React.createElement(
-      "li",
-      null,
-      React.createElement(
-        "a",
-        { href: "transaction.html" },
-        React.createElement("i", { className: "fas fa-wallet" }),
-        "Transacciones"
-      )
     )
   );
 };
@@ -264,7 +254,7 @@ var Texto = function Texto(props) {
   );
 };
 
-var TicketView = function TicketView() {
+var TicketView = function TicketView(props) {
   return React.createElement(
     "div",
     { className: "mdc-layout-grid" },
@@ -294,7 +284,32 @@ var TicketView = function TicketView() {
           null,
           "Subtotal"
         )
-      )
+      ),
+      props.query.map(function (element) {
+        return React.createElement(
+          "tr",
+          { key: element.ProductID.N },
+          React.createElement(
+            "td",
+            null,
+            element.ProductName.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.ProductID.N
+          ),
+          React.createElement(
+            "td",
+            null,
+            "Number(arreglo[",
+            element.ProductID.N,
+            "]) * Number(",
+            element.Price.N,
+            ")"
+          )
+        );
+      })
     ),
     React.createElement(
       "div",
@@ -315,7 +330,9 @@ var Aplicacion = function (_React$Component) {
     _this.state = {
       isTableVisible: false,
       query: [],
-      updated: 0
+      updated: 0,
+      arreglo: [],
+      isPurchased: false
     };
     _this.actualizar = _this.actualizar.bind(_this);
     _this.getSaleProducts = _this.getSaleProducts.bind(_this);
@@ -326,15 +343,40 @@ var Aplicacion = function (_React$Component) {
     key: "getSaleProducts",
     value: function getSaleProducts() {
       var coffee = document.getElementById("Coffee").value | 0;
-      var cookie = document.getElementById("Galletas").value | 0;
-      var carnita = document.getElementById("Carnita Asada (Prime)").value | 0;
-      var milk = document.getElementById("Leche").value | 0;
-      var cerveza = document.getElementById("Cerveza").value | 0;
+      if (coffee > Number(this.state.query[0].Stock.N)) {
+        coffee = 0;
+        alert("Cantidad invalida para Coffee. Solo puedes comprar hasta " + String(this.state.query[0].Stock.N) + " unidades.");
+      }
 
-      console.log(this.state.query[0]);
+      var cookie = document.getElementById("Galletas").value | 0;
+      if (cookie > Number(this.state.query[1].Stock.N)) {
+        cookie = 0;
+        alert("Cantidad invalida para Galletas. Solo puedes comprar hasta " + String(this.state.query[1].Stock.N) + " unidades.");
+      }
+
+      var carnita = document.getElementById("Carnita Asada (Prime)").value | 0;
+      if (carnita > Number(this.state.query[2].Stock.N)) {
+        carnita = 0;
+        alert("Cantidad invalida para Carnita Asada (Prime). Solo puedes comprar hasta " + String(this.state.query[2].Stock.N) + " unidades.");
+      }
+
+      var milk = document.getElementById("Leche").value | 0;
+      if (milk > Number(this.state.query[3].Stock.N)) {
+        milk = 0;
+        alert("Cantidad invalida para Leche. Solo puedes comprar hasta " + String(this.state.query[3].Stock.N) + " unidades.");
+      }
+
+      var cerveza = document.getElementById("Cerveza").value | 0;
+      if (cerveza > Number(this.state.query[4].Stock.N)) {
+        cerveza = 0;
+        alert("Cantidad invalida para Cerveza. Solo puedes comprar hasta " + String(this.state.query[4].Stock.N) + " unidades.");
+      }
 
       // Llamada de Ajax para subir info a BD
       fetch("/write/" + String(coffee) + "/" + String(cookie) + "/" + String(carnita) + "/" + String(milk) + "/" + String(cerveza));
+
+      var arreglo = [coffee, cookie, carnita, milk, cerveza];
+      this.setState({ isPurchased: true });
     }
   }, {
     key: "actualizar",
@@ -380,7 +422,6 @@ var Aplicacion = function (_React$Component) {
             this.state.isTableVisible == true && React.createElement(TransactionsTable, { query: query }),
             React.createElement(BotonGenerarTicket, { ticket: this.getSaleProducts })
           ),
-          React.createElement(TicketView, null),
           React.createElement(Pie, null)
         ),
         React.createElement(SideBar, null)

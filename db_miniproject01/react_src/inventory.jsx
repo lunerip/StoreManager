@@ -20,7 +20,6 @@ const BusinessButtons= () => (
   <h6>Business</h6>
   <li><a href="sales.html"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
   <li><a href="inventory.html"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
-  <li><a href="transaction.html"><i className="fas fa-wallet"></i>Transacciones</a></li>
   </ul>
 );
 
@@ -103,9 +102,9 @@ const TopRow = props=>(
 );
 
 const InventarioNuevo= props=>(
-  <div>
+  <div className="mdc-layout-grid">
     <div className="subtitle">
-      Ingresa la cantidad de productos que quieras agregar
+      Agregar Productos
     </div>
     <table>
       <tr>
@@ -117,6 +116,7 @@ const InventarioNuevo= props=>(
      {
        props.query.map(((element)=>
           <tr key={element.ProductID.N}>
+            <td>{element.ProductID.N}</td>
             <td>{element.ProductName.S}</td>
             <td><input type="number"  min="0" max="100" id={element.ProductName.S}/></td>
             <td>{element.Cantidad.S}</td>
@@ -187,10 +187,10 @@ class Aplicacion extends React.Component {
       var milk = document.getElementById("Leche").value| 0;
       var cerveza = document.getElementById("Cerveza").value| 0;
       
-      console.log(this.state.query[0])
       
       // Llamada de Ajax para subir info a BD
-      fetch("/add/" + String(coffee) + "/" + String(cookie)+ "/" + String(carnita)+ "/" + String(milk)+ "/" + String(cerveza));
+      fetch("/add/" + String(milk) + "/" + String(cookie)+ "/" + String(coffee)+ "/" + String(carnita)+ "/" + String(cerveza));
+      this.actualizar()
     }
     
   
@@ -231,7 +231,7 @@ class Aplicacion extends React.Component {
           {this.state.isTableVisible == true && 
             <TopRow query ={query}/>
           }
-          <InventarioNuevo/>
+          <InventarioNuevo query ={query}/>
           <BotonAgregar adding={this.addSotck}/>
           <Pie/>
           </section>

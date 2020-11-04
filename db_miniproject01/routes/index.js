@@ -134,19 +134,19 @@ router.get('/add/:p1?/:p2?/:p3?/:p4?/:p5?', (req, res) => {
   const p5 = Number(req.params.p5);
   
   if(p1>0){
-      actualizarStock(1, p1);
+      addStock(1, p1);
   }
   if(p2>0){
-    actualizarStock(2, p2);
+    addStock(2, p2);
   }
   if(p3>0){
-    actualizarStock(3, p3);
+    addStock(3, p3);
   }
   if(p4>0){
-    actualizarStock(4, p4);
+    addStock(4, p4);
   }
   if(p5>0){
-    actualizarStock(5, p5);
+    addStock(5, p5);
   }
   
 });

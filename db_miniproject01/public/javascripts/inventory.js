@@ -53,16 +53,6 @@ var BusinessButtons = function BusinessButtons() {
         React.createElement("i", { className: "fas fa-file-invoice-dollar" }),
         "Inventario"
       )
-    ),
-    React.createElement(
-      "li",
-      null,
-      React.createElement(
-        "a",
-        { href: "transaction.html" },
-        React.createElement("i", { className: "fas fa-wallet" }),
-        "Transacciones"
-      )
     )
   );
 };
@@ -199,47 +189,73 @@ var TopRow = function TopRow(props) {
   );
 };
 
-var InventarioNuevo = function InventarioNuevo() {
+var InventarioNuevo = function InventarioNuevo(props) {
   return React.createElement(
     "div",
     { className: "mdc-layout-grid" },
     React.createElement(
       "div",
       { className: "subtitle" },
-      "Agregar Inventario"
+      "Agregar Productos"
     ),
     React.createElement(
       "table",
       null,
       React.createElement(
-        "tbody",
+        "tr",
         null,
         React.createElement(
-          "tr",
+          "th",
           null,
+          "Producto"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Cantidad"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Contenido"
+        ),
+        React.createElement(
+          "th",
+          null,
+          "Precio"
+        )
+      ),
+      props.query.map(function (element) {
+        return React.createElement(
+          "tr",
+          { key: element.ProductID.N },
           React.createElement(
-            "th",
+            "td",
             null,
-            "ProductID"
+            element.ProductID.N
           ),
           React.createElement(
-            "th",
+            "td",
             null,
-            "Cantidad a agregar"
+            element.ProductName.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            React.createElement("input", { type: "number", min: "0", max: "100", id: element.ProductName.S })
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Cantidad.S
+          ),
+          React.createElement(
+            "td",
+            null,
+            element.Price.N
           )
-        ),
-        React.createElement(
-          "th",
-          null,
-          React.createElement("input", { type: "number", min: "0", max: "5" })
-        ),
-        React.createElement(
-          "th",
-          null,
-          React.createElement("input", { type: "number", min: "0", max: "30" })
-        ),
-        React.createElement("tr", null)
-      )
+        );
+      })
     )
   );
 };
@@ -247,7 +263,7 @@ var InventarioNuevo = function InventarioNuevo() {
 var BotonAgregar = function BotonAgregar(props) {
   return React.createElement(
     "button",
-    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.update },
+    { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.adding },
     "Agregar"
   );
 };
@@ -311,10 +327,24 @@ var Aplicacion = function (_React$Component) {
       updated: 0
     };
     _this.actualizar = _this.actualizar.bind(_this);
+    _this.addSotck = _this.addSotck.bind(_this);
     return _this;
   }
 
   _createClass(Aplicacion, [{
+    key: "addSotck",
+    value: function addSotck() {
+      var coffee = document.getElementById("Coffee").value | 0;
+      var cookie = document.getElementById("Galletas").value | 0;
+      var carnita = document.getElementById("Carnita Asada (Prime)").value | 0;
+      var milk = document.getElementById("Leche").value | 0;
+      var cerveza = document.getElementById("Cerveza").value | 0;
+
+      // Llamada de Ajax para subir info a BD
+      fetch("/add/" + String(milk) + "/" + String(cookie) + "/" + String(coffee) + "/" + String(carnita) + "/" + String(cerveza));
+      this.actualizar();
+    }
+  }, {
     key: "actualizar",
     value: function actualizar() {
       var _this2 = this;
@@ -353,8 +383,8 @@ var Aplicacion = function (_React$Component) {
           React.createElement(Header, null),
           React.createElement(SalesTitle, null),
           this.state.isTableVisible == true && React.createElement(TopRow, { query: query }),
-          React.createElement(InventarioNuevo, null),
-          React.createElement(BotonAgregar, null),
+          React.createElement(InventarioNuevo, { query: query }),
+          React.createElement(BotonAgregar, { adding: this.addSotck }),
           React.createElement(Pie, null)
         ),
         React.createElement(SideBar, null)

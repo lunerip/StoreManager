@@ -22,7 +22,6 @@ const BusinessButtons= () => (
   <h6>Business</h6>
   <li><a href="sales.html"><i className="fas fa-money-bill"></i>Realizar venta</a></li>
   <li><a href="inventory.html"><i className="fas fa-file-invoice-dollar"></i>Inventario</a></li>
-  <li><a href="transaction.html"><i className="fas fa-wallet"></i>Transacciones</a></li>
   </ul>
 
 );
@@ -159,24 +158,34 @@ const Texto = props => (
 
 );
 
-const TicketView = () => (
-  <div className="mdc-layout-grid">
-      <div className="subtitle">
-        Ticket
-      </div>
-       <table>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Subtotal</th>
-        </tr>
-        </table>
+const TicketView = props =>(
+    <div className="mdc-layout-grid">
         <div className="subtitle">
-        Total: $
+          Ticket
+        </div>
+         <table>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+          {
+           props.query.map(((element)=>
+              <tr key={element.ProductID.N}>
+                <td>{element.ProductName.S}</td>
+                <td>{element.ProductID.N}</td>
+                <td>Number(arreglo[{element.ProductID.N}]) * Number({element.Price.N})</td>
+              </tr>
+              )
+            )
+          }
+          
+          </table>
+          <div className="subtitle">
+          Total: $
+        </div>
       </div>
-  </div>
-);
-
+  );
 
     
 class Aplicacion extends React.Component {
@@ -186,7 +195,9 @@ class Aplicacion extends React.Component {
       this.state = {
         isTableVisible:false,
         query: [],
-        updated: 0
+        updated: 0,
+        arreglo:[],
+        isPurchased:false
       };
       this.actualizar = this.actualizar.bind(this);
       this.getSaleProducts = this.getSaleProducts.bind(this);
@@ -195,15 +206,40 @@ class Aplicacion extends React.Component {
     
     getSaleProducts(){
       var coffee = document.getElementById("Coffee").value | 0;
-      var cookie = document.getElementById("Galletas").value| 0;
-      var carnita = document.getElementById("Carnita Asada (Prime)").value| 0;
-      var milk = document.getElementById("Leche").value| 0;
-      var cerveza = document.getElementById("Cerveza").value| 0;
+      if(coffee > Number(this.state.query[0].Stock.N)){
+        coffee = 0;
+        alert("Cantidad invalida para Coffee. Solo puedes comprar hasta "+ String(this.state.query[0].Stock.N) + " unidades.")
+      }
       
-      console.log(this.state.query[0])
+      var cookie = document.getElementById("Galletas").value| 0;
+      if(cookie > Number(this.state.query[1].Stock.N)){
+        cookie = 0;
+        alert("Cantidad invalida para Galletas. Solo puedes comprar hasta "+ String(this.state.query[1].Stock.N) + " unidades.")
+      }
+      
+      var carnita = document.getElementById("Carnita Asada (Prime)").value| 0;
+      if(carnita > Number(this.state.query[2].Stock.N)){
+        carnita = 0;
+        alert("Cantidad invalida para Carnita Asada (Prime). Solo puedes comprar hasta "+ String(this.state.query[2].Stock.N) + " unidades.")
+      }
+      
+      var milk = document.getElementById("Leche").value| 0;
+      if(milk > Number(this.state.query[3].Stock.N)){
+        milk = 0;
+        alert("Cantidad invalida para Leche. Solo puedes comprar hasta "+ String(this.state.query[3].Stock.N) + " unidades.")
+      }
+      
+      var cerveza = document.getElementById("Cerveza").value| 0;
+      if(cerveza > Number(this.state.query[4].Stock.N)){
+        cerveza = 0;
+        alert("Cantidad invalida para Cerveza. Solo puedes comprar hasta "+ String(this.state.query[4].Stock.N) + " unidades.")
+      }
       
       // Llamada de Ajax para subir info a BD
       fetch("/write/" + String(coffee) + "/" + String(cookie)+ "/" + String(carnita)+ "/" + String(milk)+ "/" + String(cerveza));
+      
+      var arreglo = [coffee, cookie, carnita, milk, cerveza];
+      this.setState({isPurchased:true})
     }
     
     
@@ -240,19 +276,19 @@ class Aplicacion extends React.Component {
             <Header/>
             <SalesTitle/>
             <div className="mdc-layout-grid">
-              {this.state.isTableVisible == true && 
-                
-                <TransactionsTable query ={query}/>
-              }
-              <BotonGenerarTicket ticket = {this.getSaleProducts} />
+                {this.state.isTableVisible == true && 
+                  
+                  <TransactionsTable query ={query}/>
+                  
+                }
+                <BotonGenerarTicket ticket = {this.getSaleProducts} />
+            
             </div>
             
-            <TicketView/>
             <Pie/>
-          </section>
-          <SideBar/>
-        </div>
-      );
+        </section>
+        <SideBar/>
+      </div> );
     }
   }
   
