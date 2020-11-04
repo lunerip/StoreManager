@@ -183,7 +183,7 @@ var TransactionsTable = function TransactionsTable(props) {
           React.createElement(
             "td",
             null,
-            React.createElement("input", { type: "number", min: "0", max: "10", id: element.ProductName.S })
+            React.createElement("input", { type: "number", min: "0", max: element.Stock.N, id: element.ProductName.S })
           ),
           React.createElement(
             "td",
@@ -244,7 +244,7 @@ var BotonGenerarTicket = function BotonGenerarTicket(props) {
   return React.createElement(
     "button",
     { className: "w3-button w3-purple w3-round w3-margin-left", onClick: props.ticket },
-    "Generar Ticket"
+    "Realizar Compra"
   );
 };
 
@@ -325,12 +325,16 @@ var Aplicacion = function (_React$Component) {
   _createClass(Aplicacion, [{
     key: "getSaleProducts",
     value: function getSaleProducts() {
-      var coffee = document.getElementById("Coffee").value;
-      var cookie = document.getElementById("Galletas").value;
-      var carnita = document.getElementById("Carnita Asada (Prime)").value;
-      var milk = document.getElementById("Leche").value;
-      var cerveza = document.getElementById("Cerveza").value;
-      alert(carnita);
+      var coffee = document.getElementById("Coffee").value | 0;
+      var cookie = document.getElementById("Galletas").value | 0;
+      var carnita = document.getElementById("Carnita Asada (Prime)").value | 0;
+      var milk = document.getElementById("Leche").value | 0;
+      var cerveza = document.getElementById("Cerveza").value | 0;
+
+      console.log(this.state.query[0]);
+
+      // Llamada de Ajax para subir info a BD
+      fetch("/write/" + String(coffee) + "/" + String(cookie) + "/" + String(carnita) + "/" + String(milk) + "/" + String(cerveza));
     }
   }, {
     key: "actualizar",

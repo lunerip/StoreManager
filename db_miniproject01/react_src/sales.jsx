@@ -1,6 +1,5 @@
 /* global React, ReactDOM, fetch */
 
-
 const Logo = () =>(
 
   <div>
@@ -95,7 +94,7 @@ const TransactionsTable = props=>(
          props.query.map(((element)=>
             <tr key={element.ProductID.N}>
               <td>{element.ProductName.S}</td>
-              <td><input type="number"  min="0" max="10" id={element.ProductName.S}/></td>
+              <td><input type="number"  min="0" max={element.Stock.N} id={element.ProductName.S}/></td>
               <td>{element.Cantidad.S}</td>
               <td>{element.Price.N}</td>
             </tr>
@@ -146,7 +145,7 @@ const InventoryTitle = () =>(
 
 const BotonGenerarTicket= props => (
   <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.ticket}>
-    Generar Ticket
+    Realizar Compra
   </button>
 );
   
@@ -156,7 +155,7 @@ const Texto = props => (
       <p>
         <em>{props.mensaje}</em>
       </p>
-    </div>
+    </div> 
 
 );
 
@@ -178,6 +177,7 @@ const TicketView = () => (
   </div>
 );
 
+
     
 class Aplicacion extends React.Component {
   
@@ -194,14 +194,19 @@ class Aplicacion extends React.Component {
     
     
     getSaleProducts(){
-      var coffee = document.getElementById("Coffee").value;
-      var cookie = document.getElementById("Galletas").value;
-      var carnita = document.getElementById("Carnita Asada (Prime)").value;
-      var milk = document.getElementById("Leche").value;
-      var cerveza = document.getElementById("Cerveza").value;
-      alert(carnita);
+      var coffee = document.getElementById("Coffee").value | 0;
+      var cookie = document.getElementById("Galletas").value| 0;
+      var carnita = document.getElementById("Carnita Asada (Prime)").value| 0;
+      var milk = document.getElementById("Leche").value| 0;
+      var cerveza = document.getElementById("Cerveza").value| 0;
+      
+      console.log(this.state.query[0])
+      
+      // Llamada de Ajax para subir info a BD
+      fetch("/write/" + String(coffee) + "/" + String(cookie)+ "/" + String(carnita)+ "/" + String(milk)+ "/" + String(cerveza));
     }
-  
+    
+    
     actualizar() {
     fetch("/productos")  // llamada de AJAX
       .then(res =>
@@ -239,10 +244,8 @@ class Aplicacion extends React.Component {
                 
                 <TransactionsTable query ={query}/>
               }
-              <BotonGenerarTicket ticket = {this.getSaleProducts}/>
+              <BotonGenerarTicket ticket = {this.getSaleProducts} />
             </div>
-            
-            
             
             <TicketView/>
             <Pie/>
