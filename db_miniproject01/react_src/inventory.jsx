@@ -102,30 +102,35 @@ const TopRow = props=>(
   
 );
 
-const InventarioNuevo = () => (
-  <div className="mdc-layout-grid">
-      <div className="subtitle">
-        Agregar Inventario
-      </div>
-       <table>
-       <tbody>
-        <tr>
-          <th>ProductID</th>
-          <th>Cantidad a agregar</th>
+const InventarioNuevo= props=>(
+  <div>
+    <div className="subtitle">
+      Ingresa la cantidad de productos que quieras agregar
+    </div>
+    <table>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Contenido</th>
+        <th>Precio</th>
+      </tr>
+     {
+       props.query.map(((element)=>
+          <tr key={element.ProductID.N}>
+            <td>{element.ProductName.S}</td>
+            <td><input type="number"  min="0" max="100" id={element.ProductName.S}/></td>
+            <td>{element.Cantidad.S}</td>
+            <td>{element.Price.N}</td>
+          </tr>
+          )
+        )
+      }
           
-        </tr>
-        <th><input type="number"  min="0" max="5"/></th>
-          <th><input type="number"  min="0" max="30"/></th>
-        <tr>
-        </tr>
-        </tbody>
-        </table>
-        
-  </div>
-);
+    </table>
+  </div>);
 
 const BotonAgregar= props => (
-  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.update}>
+  <button className="w3-button w3-purple w3-round w3-margin-left"onClick={props.adding}>
     Agregar
   </button>
 );
@@ -171,7 +176,23 @@ class Aplicacion extends React.Component {
         updated: 0
       };
       this.actualizar = this.actualizar.bind(this);
+      this.addSotck = this.addSotck.bind(this);
     }
+
+
+    addSotck(){
+      var coffee = document.getElementById("Coffee").value | 0;
+      var cookie = document.getElementById("Galletas").value| 0;
+      var carnita = document.getElementById("Carnita Asada (Prime)").value| 0;
+      var milk = document.getElementById("Leche").value| 0;
+      var cerveza = document.getElementById("Cerveza").value| 0;
+      
+      console.log(this.state.query[0])
+      
+      // Llamada de Ajax para subir info a BD
+      fetch("/add/" + String(coffee) + "/" + String(cookie)+ "/" + String(carnita)+ "/" + String(milk)+ "/" + String(cerveza));
+    }
+    
   
     actualizar() {
     fetch("/productos")  // llamada de AJAX
@@ -211,7 +232,7 @@ class Aplicacion extends React.Component {
             <TopRow query ={query}/>
           }
           <InventarioNuevo/>
-          <BotonAgregar/>
+          <BotonAgregar adding={this.addSotck}/>
           <Pie/>
           </section>
           <SideBar/>
